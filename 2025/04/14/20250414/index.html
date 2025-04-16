@@ -5,16 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="20250414, TAI JIN PEI">
-    <meta name="description" content="做个测试。
-1歌曲
-2韩国
-3gloomy saturday
+    <meta name="description" content="bottom leftcan listen song
+左下角可以听歌
 
 
 
 
 		
-		var gitalkConfig = {&#34;clientID&#34;:&#34;Ov23lifxfO9P7oKOmHpA&#34;,&#34;clientSecret&#34;:&#34;a3068876f1">
+		var gitalkConfig = {&#34;clientID&#34;:&#34;Ov23lifxfO9P7oKOmHpA&#34;,&#34;clientSecret&#34;:&#34;a30688">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -341,6 +339,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '2ac9a6746aca543af8dff39894cfe8173afba21eb01c6fae33d52947222855ef';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -371,13 +382,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/testing/">
-                                <span class="chip bg-color">testing</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -410,10 +417,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>做个测试。</p>
-<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>歌曲</p>
-<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>韩国</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>gloomy saturday</p>
+                <h1 id="bottom-left"><a href="#bottom-left" class="headerlink" title="bottom left"></a>bottom left</h1><p>can listen song</p>
+<h1 id="左下角"><a href="#左下角" class="headerlink" title="左下角"></a>左下角</h1><p>可以听歌</p>
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -486,11 +491,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/testing/">
-                                    <span class="chip bg-color">testing</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
