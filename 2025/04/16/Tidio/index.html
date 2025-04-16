@@ -4,17 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="20250414, TAI JIN PEI">
-    <meta name="description" content="做个测试。
-1歌曲
-2韩国
-3gloomy saturday
-
-
-
-
-		
-		var gitalkConfig = {&#34;clientID&#34;:&#34;Ov23lifxfO9P7oKOmHpA&#34;,&#34;clientSecret&#34;:&#34;a3068876f1">
+    <meta name="keywords" content="Tidio x HEXO (pw:123456), TAI JIN PEI">
+    <meta name="description" content="How to implement Tidio into HEXO1. Get private keySetting &amp;gt; Developer &amp;gt; Project data &amp;gt; Public key
+2. _config.ym">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -26,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>20250414 | TAI JIN PEI</title>
+    <title>Tidio x HEXO (pw:123456) | TAI JIN PEI</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -344,12 +336,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">20250414</h1>
+                    <h1 class="description center-align post-title">Tidio x HEXO (pw:123456)</h1>
                 </div>
             </div>
         </div>
@@ -385,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-04-14
+                    2025-04-16
                 </div>
                 
 
@@ -406,10 +398,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>做个测试。</p>
-<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>歌曲</p>
-<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>韩国</p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>gloomy saturday</p>
+                <h1 id="How-to-implement-Tidio-into-HEXO"><a href="#How-to-implement-Tidio-into-HEXO" class="headerlink" title="How to implement Tidio into HEXO"></a>How to implement <a target="_blank" rel="noopener" href="https://www.tidio.com/?a_bucket=sem&amp;a_source=google&amp;a_g_campaignid=17117016871&amp;a_g_keyword=tidio&amp;a_g_creative=701095043432&amp;a_type=brand&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=17117016871&amp;utm_term=tidio&amp;hsa_acc=1286770856&amp;hsa_cam=17117016871&amp;hsa_grp=137849944682&amp;hsa_ad=701095043432&amp;hsa_src=g&amp;hsa_tgt=kwd-111279180878&amp;hsa_kw=tidio&amp;hsa_mt=b&amp;hsa_net=adwords&amp;hsa_ver=3&amp;gad_source=1&amp;gclid=Cj0KCQjwh_i_BhCzARIsANimeoG1tRi6EJblpbXjq3AXLscBny67WgMFKCclbLsrqc5p9RDXhKXAA6waAkqsEALw_wcB">Tidio</a> into HEXO</h1><h2 id="1-Get-private-key"><a href="#1-Get-private-key" class="headerlink" title="1. Get private key"></a>1. Get private key</h2><p>Setting &gt; Developer &gt; Project data &gt; <a target="_blank" rel="noopener" href="https://www.tidio.com/panel/settings/developer/developerData">Public key</a></p>
+<h2 id="2-config-yml-add-this"><a href="#2-config-yml-add-this" class="headerlink" title="2. _config.yml add this"></a>2. _config.yml add this</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tidio:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  key: <span class="comment">#public key</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-head-ejs"><a href="#3-head-ejs" class="headerlink" title="3. head.ejs"></a>3. head.ejs</h2><p>File path: C:\project_name\themes\hexo-theme-matery\layout_partial\head.ejs</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">head</span>&gt;</span><br><span class="line">&lt;!-- 最下面加上 --&gt;</span><br><span class="line">&lt;script src=<span class="string">"//code.tidio.co/bgznflbcfx51bvcs0hvewrwbb2lilewq.js"</span> async&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
 
 <div id="gitalk-container"></div>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -445,7 +441,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2025/04/14/20250414/">http://example.com/2025/04/14/20250414/</a>
+                    <a href="http://example.com/2025/04/16/Tidio/">http://example.com/2025/04/16/Tidio/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -526,9 +522,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/04/16/Tidio/">
                     <div class="card-image">
@@ -546,9 +543,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -557,6 +554,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -567,13 +565,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/04/13/hello-world/">
+                <a href="/2025/04/14/20250414/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="20250414">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">20250414</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -584,7 +582,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-14
                             </span>
                         <span class="publish-author">
                             

@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Tidio x HEXO (pw:123456)</title>
+      <link href="/2025/04/16/Tidio/"/>
+      <url>/2025/04/16/Tidio/</url>
+      
+        <content type="html"><![CDATA[<h1 id="How-to-implement-Tidio-into-HEXO"><a href="#How-to-implement-Tidio-into-HEXO" class="headerlink" title="How to implement Tidio into HEXO"></a>How to implement <a href="https://www.tidio.com/?a_bucket=sem&amp;a_source=google&amp;a_g_campaignid=17117016871&amp;a_g_keyword=tidio&amp;a_g_creative=701095043432&amp;a_type=brand&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=17117016871&amp;utm_term=tidio&amp;hsa_acc=1286770856&amp;hsa_cam=17117016871&amp;hsa_grp=137849944682&amp;hsa_ad=701095043432&amp;hsa_src=g&amp;hsa_tgt=kwd-111279180878&amp;hsa_kw=tidio&amp;hsa_mt=b&amp;hsa_net=adwords&amp;hsa_ver=3&amp;gad_source=1&amp;gclid=Cj0KCQjwh_i_BhCzARIsANimeoG1tRi6EJblpbXjq3AXLscBny67WgMFKCclbLsrqc5p9RDXhKXAA6waAkqsEALw_wcB">Tidio</a> into HEXO</h1><h2 id="1-Get-private-key"><a href="#1-Get-private-key" class="headerlink" title="1. Get private key"></a>1. Get private key</h2><p>Setting &gt; Developer &gt; Project data &gt; <a href="https://www.tidio.com/panel/settings/developer/developerData">Public key</a></p><h2 id="2-config-yml-add-this"><a href="#2-config-yml-add-this" class="headerlink" title="2. _config.yml add this"></a>2. _config.yml add this</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tidio:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  key: <span class="comment">#public key</span></span><br></pre></td></tr></tbody></table></figure><h2 id="3-head-ejs"><a href="#3-head-ejs" class="headerlink" title="3. head.ejs"></a>3. head.ejs</h2><p>File path: C:\project_name\themes\hexo-theme-matery\layout_partial\head.ejs</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">head</span>&gt;</span><br><span class="line">&lt;!-- 最下面加上 --&gt;</span><br><span class="line">&lt;script src=<span class="string">"//code.tidio.co/bgznflbcfx51bvcs0hvewrwbb2lilewq.js"</span> async&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></tbody></table></figure><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>20250414</title>
       <link href="/2025/04/14/20250414/"/>
       <url>/2025/04/14/20250414/</url>
