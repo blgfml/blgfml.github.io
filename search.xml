@@ -27,22 +27,34 @@
       <link href="/2025/04/14/20250414/"/>
       <url>/2025/04/14/20250414/</url>
       
-        <content type="html"><![CDATA[<h1 id="bottom-left"><a href="#bottom-left" class="headerlink" title="bottom left"></a>bottom left</h1><p>can listen song</p><h1 id="左下角"><a href="#左下角" class="headerlink" title="左下角"></a>左下角</h1><p>可以听歌</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
+        <content type="html"><![CDATA[<h1 id="bottom-left"><a href="#bottom-left" class="headerlink" title="bottom left"></a>bottom left</h1><p>can listen song</p><h1 id="左下角"><a href="#左下角" class="headerlink" title="左下角"></a>左下角</h1><p>可以听歌</p><h1 id="Publish-Web"><a href="#Publish-Web" class="headerlink" title="Publish Web"></a>Publish Web</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"><span class="comment"># d = deploy (publish)</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br><span class="line"><span class="comment"># s = server (local)</span></span><br></pre></td></tr></tbody></table></figure><h1 id="Password"><a href="#Password" class="headerlink" title="Password"></a>Password</h1><p> use <a href="https://emn178.github.io/online-tools/sha256.html">sha256</a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>Hello World</title>
+      <title>Hello World (pw:123)</title>
       <link href="/2025/04/13/hello-world/"/>
       <url>/2025/04/13/hello-world/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
       
     </entry>
     
