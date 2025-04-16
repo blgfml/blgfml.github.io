@@ -12,6 +12,31 @@
       
       
       
+        <tags>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>20250414</title>
+      <link href="/2025/04/14/20250414/"/>
+      <url>/2025/04/14/20250414/</url>
+      
+        <content type="html"><![CDATA[<p>做个测试。</p><h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>歌曲</p><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>韩国</p><h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>gloomy saturday</p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> testing </tag>
+            
+        </tags>
+      
     </entry>
     
     
