@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-16T07:39:00.092Z</updated>
+  <updated>2025-04-17T17:45:32.632Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oversea download マンガワン(MANGA ONE) App</title>
+    <link href="http://example.com/2025/04/17/20250417/"/>
+    <id>http://example.com/2025/04/17/20250417/</id>
+    <published>2025-04-17T15:12:14.000Z</published>
+    <updated>2025-04-17T17:45:32.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;マンガワン-MANGA-ONE&quot;&gt;&lt;a href=&quot;#マンガワン-MANGA-ONE&quot; class=&quot;headerlink&quot; title=&quot;マンガワン(MANGA ONE)&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Japanese" scheme="http://example.com/tags/Japanese/"/>
+    
+    <category term="Personal" scheme="http://example.com/tags/Personal/"/>
+    
+  </entry>
   
   <entry>
     <title>Tidio x HEXO (pw:123456)</title>
