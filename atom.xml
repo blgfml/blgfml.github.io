@@ -3,11 +3,11 @@
   <title>TAI JIN PEI</title>
   
   <subtitle>HI, IM ( )</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://blgfml.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="http://blgfml.github.io/"/>
   <updated>2025-04-18T03:39:43.194Z</updated>
-  <id>http://example.com/</id>
+  <id>http://blgfml.github.io/</id>
   
   <author>
     <name>TAI JIN PEI</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>comment here--留言区(pw:comment)</title>
-    <link href="http://example.com/2025/04/18/comment-area/"/>
-    <id>http://example.com/2025/04/18/comment-area/</id>
+    <link href="http://blgfml.github.io/2025/04/18/comment-area/"/>
+    <id>http://blgfml.github.io/2025/04/18/comment-area/</id>
     <published>2025-04-18T03:06:50.000Z</published>
     <updated>2025-04-18T03:39:43.194Z</updated>
     
@@ -37,14 +37,14 @@
     
     
     
-    <category term="personal" scheme="http://example.com/tags/personal/"/>
+    <category term="personal" scheme="http://blgfml.github.io/tags/personal/"/>
     
   </entry>
   
   <entry>
     <title>Oversea download マンガワン (MANGA ONE) App (pw:manga one)</title>
-    <link href="http://example.com/2025/04/17/Oversea-download-MANGA-ONE-App/"/>
-    <id>http://example.com/2025/04/17/Oversea-download-MANGA-ONE-App/</id>
+    <link href="http://blgfml.github.io/2025/04/17/Oversea-download-MANGA-ONE-App/"/>
+    <id>http://blgfml.github.io/2025/04/17/Oversea-download-MANGA-ONE-App/</id>
     <published>2025-04-17T15:12:14.000Z</published>
     <updated>2025-04-17T18:07:56.272Z</updated>
     
@@ -60,16 +60,16 @@
     
     
     
-    <category term="Japanese" scheme="http://example.com/tags/Japanese/"/>
+    <category term="Japanese" scheme="http://blgfml.github.io/tags/Japanese/"/>
     
-    <category term="Personal" scheme="http://example.com/tags/Personal/"/>
+    <category term="Personal" scheme="http://blgfml.github.io/tags/Personal/"/>
     
   </entry>
   
   <entry>
     <title>Tidio x HEXO (pw:123456)</title>
-    <link href="http://example.com/2025/04/16/Tidio-x-HEXO/"/>
-    <id>http://example.com/2025/04/16/Tidio-x-HEXO/</id>
+    <link href="http://blgfml.github.io/2025/04/16/Tidio-x-HEXO/"/>
+    <id>http://blgfml.github.io/2025/04/16/Tidio-x-HEXO/</id>
     <published>2025-04-16T03:14:23.000Z</published>
     <updated>2025-04-17T18:25:20.741Z</updated>
     
@@ -85,14 +85,14 @@
     
     
     
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    <category term="Web" scheme="http://blgfml.github.io/tags/Web/"/>
     
   </entry>
   
   <entry>
     <title>20250414</title>
-    <link href="http://example.com/2025/04/14/20250414/"/>
-    <id>http://example.com/2025/04/14/20250414/</id>
+    <link href="http://blgfml.github.io/2025/04/14/20250414/"/>
+    <id>http://blgfml.github.io/2025/04/14/20250414/</id>
     <published>2025-04-13T16:51:40.000Z</published>
     <updated>2025-04-17T18:25:34.269Z</updated>
     
@@ -109,14 +109,14 @@
     
     
     
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    <category term="Web" scheme="http://blgfml.github.io/tags/Web/"/>
     
   </entry>
   
   <entry>
     <title>Hello World (pw:123)</title>
-    <link href="http://example.com/2025/04/13/hello-world/"/>
-    <id>http://example.com/2025/04/13/hello-world/</id>
+    <link href="http://blgfml.github.io/2025/04/13/hello-world/"/>
+    <id>http://blgfml.github.io/2025/04/13/hello-world/</id>
     <published>2025-04-13T15:11:49.102Z</published>
     <updated>2025-04-16T07:39:21.443Z</updated>
     
@@ -132,7 +132,7 @@
     
     
     
-    <category term="Web" scheme="http://example.com/tags/Web/"/>
+    <category term="Web" scheme="http://blgfml.github.io/tags/Web/"/>
     
   </entry>
   
