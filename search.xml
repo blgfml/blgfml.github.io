@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>comment here--留言区(pw:comment)</title>
+      <link href="/2025/04/18/comment-area/"/>
+      <url>/2025/04/18/comment-area/</url>
+      
+        <content type="html"><![CDATA[<p>Hello! You found me!  <br>哈喽！看看谁来了！ <br><br> <br><br>  <br><br>Comment Here!<br><br>    | <br><br>    | <br><br>    v <br></p><div id="gitalk-container"></div><script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script><script>var gitalkConfig = {"clientID":"Ov23lifxfO9P7oKOmHpA","clientSecret":"a3068876f16394d8d514654e084d7679a8b0eb98","repo":"blgfml.github.io","owner":"blgfml","admin":["blgfml"],"distractionFreeMode":false,"labels":["Gitalk"]};    gitalkConfig.id = md5(location.pathname);var gitalk = new Gitalk(gitalkConfig);    gitalk.render("gitalk-container");    </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> personal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Oversea download マンガワン (MANGA ONE) App (pw:manga one)</title>
       <link href="/2025/04/17/Oversea-download-MANGA-ONE-App/"/>
       <url>/2025/04/17/Oversea-download-MANGA-ONE-App/</url>
