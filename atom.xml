@@ -6,7 +6,7 @@
   <link href="https://taijinpei.info/atom.xml" rel="self"/>
   
   <link href="https://taijinpei.info/"/>
-  <updated>2025-12-08T12:40:40.102Z</updated>
+  <updated>2025-12-14T20:44:04.297Z</updated>
   <id>https://taijinpei.info/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Supabase-x-Hexo [Build Own Comment System]</title>
+    <link href="https://taijinpei.info/2025/12/15/Supabase-x-Hexo/"/>
+    <id>https://taijinpei.info/2025/12/15/Supabase-x-Hexo/</id>
+    <published>2025-12-15T02:00:00.000Z</published>
+    <updated>2025-12-14T20:44:04.297Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Say-Goodbye-to-Disqus-👋&quot;&gt;&lt;a href=&quot;#Say-Goodbye-to-Disqus-👋&quot; class=&quot;headerlink&quot; title=&quot;Say Goodbye to Disqus! 👋&quot;&gt;&lt;/a&gt;&lt;strong&gt;Say</summary>
+        
+      
+    
+    
+    
+    <category term="Dev Logs" scheme="https://taijinpei.info/categories/Dev-Logs/"/>
+    
+    
+    <category term="Supabase" scheme="https://taijinpei.info/tags/Supabase/"/>
+    
+    <category term="Web Dev" scheme="https://taijinpei.info/tags/Web-Dev/"/>
+    
+    <category term="Hexo" scheme="https://taijinpei.info/tags/Hexo/"/>
+    
+    <category term="Tutorial" scheme="https://taijinpei.info/tags/Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://taijinpei.info/2025/12/15/Supabase-x-Hexo%20copy/"/>
+    <id>https://taijinpei.info/2025/12/15/Supabase-x-Hexo%20copy/</id>
+    <published>2025-12-14T20:28:53.718Z</published>
+    <updated>2025-12-14T20:30:36.252Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Here is the polished, final version of your blog post.&lt;/p&gt;
+&lt;p&gt;It is formatted using standard Markdown, with clear headers, code blocks,</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>DNS x HEXO</title>

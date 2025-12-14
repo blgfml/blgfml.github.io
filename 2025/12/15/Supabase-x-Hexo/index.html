@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Tidio x HEXO, TAI JIN PEI">
-    <meta name="description" content="How to implement Tidio into HEXO1. Get private keySetting &amp;gt; Developer &amp;gt; Project data &amp;gt; Public key
-2. _config.ym">
+    <meta name="keywords" content="Supabase-x-Hexo [Build Own Comment System], TAI JIN PEI">
+    <meta name="description" content="Say Goodbye to Disqus! 👋How to build a free, private, and customizable comment system.
+IntroductionWhy use third-party ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Tidio x HEXO | TAI JIN PEI</title>
+    <title>Supabase-x-Hexo [Build Own Comment System] | TAI JIN PEI</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -349,12 +349,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Tidio x HEXO</h1>
+                    <h1 class="description center-align post-title">Supabase-x-Hexo [Build Own Comment System]</h1>
                 </div>
             </div>
         </div>
@@ -378,14 +378,35 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Web/">
-                                <span class="chip bg-color">Web</span>
+                            <a href="/tags/Supabase/">
+                                <span class="chip bg-color">Supabase</span>
+                            </a>
+                        
+                            <a href="/tags/Web-Dev/">
+                                <span class="chip bg-color">Web Dev</span>
+                            </a>
+                        
+                            <a href="/tags/Hexo/">
+                                <span class="chip bg-color">Hexo</span>
+                            </a>
+                        
+                            <a href="/tags/Tutorial/">
+                                <span class="chip bg-color">Tutorial</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Dev-Logs/" class="post-category">
+                                Dev Logs
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -394,7 +415,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-04-16
+                    2025-12-15
                 </div>
                 
 
@@ -415,10 +436,54 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="How-to-implement-Tidio-into-HEXO"><a href="#How-to-implement-Tidio-into-HEXO" class="headerlink" title="How to implement Tidio into HEXO"></a>How to implement <a target="_blank" rel="noopener" href="https://www.tidio.com/?a_bucket=sem&amp;a_source=google&amp;a_g_campaignid=17117016871&amp;a_g_keyword=tidio&amp;a_g_creative=701095043432&amp;a_type=brand&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=17117016871&amp;utm_term=tidio&amp;hsa_acc=1286770856&amp;hsa_cam=17117016871&amp;hsa_grp=137849944682&amp;hsa_ad=701095043432&amp;hsa_src=g&amp;hsa_tgt=kwd-111279180878&amp;hsa_kw=tidio&amp;hsa_mt=b&amp;hsa_net=adwords&amp;hsa_ver=3&amp;gad_source=1&amp;gclid=Cj0KCQjwh_i_BhCzARIsANimeoG1tRi6EJblpbXjq3AXLscBny67WgMFKCclbLsrqc5p9RDXhKXAA6waAkqsEALw_wcB">Tidio</a> into HEXO</h1><h2 id="1-Get-private-key"><a href="#1-Get-private-key" class="headerlink" title="1. Get private key"></a>1. Get private key</h2><p>Setting &gt; Developer &gt; Project data &gt; <a target="_blank" rel="noopener" href="https://www.tidio.com/panel/settings/developer/developerData">Public key</a></p>
-<h2 id="2-config-yml-add-this"><a href="#2-config-yml-add-this" class="headerlink" title="2. _config.yml add this"></a>2. _config.yml add this</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tidio:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  key: <span class="comment">#public key</span></span><br></pre></td></tr></tbody></table></figure>
-<h2 id="3-head-ejs"><a href="#3-head-ejs" class="headerlink" title="3. head.ejs"></a>3. head.ejs</h2><p>File path: C:\project_name\themes\hexo-theme-matery\layout_partial\head.ejs</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">head</span>&gt;</span><br><span class="line">&lt;!-- 最下面加上 --&gt;</span><br><span class="line">&lt;script src=<span class="string">"//code.tidio.co/bgznflbcfx51bvcs0hvewrwbb2lilewq.js"</span> async&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></tbody></table></figure>
+                <h1 id="Say-Goodbye-to-Disqus-👋"><a href="#Say-Goodbye-to-Disqus-👋" class="headerlink" title="Say Goodbye to Disqus! 👋"></a><strong>Say Goodbye to Disqus! 👋</strong></h1><h3 id="How-to-build-a-free-private-and-customizable-comment-system"><a href="#How-to-build-a-free-private-and-customizable-comment-system" class="headerlink" title="How to build a free, private, and customizable comment system."></a><em>How to build a free, private, and customizable comment system.</em></h3><hr>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h2><p>Why use third-party comment systems that track your users or cost money?<br>Today, we are going to build our own <strong>“Local” Comment System</strong> using <strong>Supabase</strong> (Backend) and some simple <strong>JavaScript</strong> (Frontend).</p>
+<p>It supports:</p>
+<ul>
+<li><strong>Privacy</strong> (You own the data)</li>
+<li><strong>Nested Replies</strong> (Like Reddit!)</li>
+<li><strong>Custom Themes</strong> (Match your website colors)</li>
+<li><strong>100% Free</strong> (Supabase Free Tier)</li>
+</ul>
+<p>Let’s dive in! 🛠️</p>
+<hr>
+<h2 id="Step-1-Backend-Setup-Supabase"><a href="#Step-1-Backend-Setup-Supabase" class="headerlink" title="Step 1: Backend Setup (Supabase)"></a><strong>Step 1: Backend Setup (Supabase)</strong></h2><p>First, we need a place to store the comments.</p>
+<ol>
+<li>Go to <a target="_blank" rel="noopener" href="https://supabase.com/">Supabase.com</a> and create a <strong>New Project</strong>.</li>
+<li>Go to the <strong>SQL Editor</strong> (the sidebar icon that looks like terminal code).</li>
+<li><strong>Copy &amp; Paste</strong> the code below to set up your database instantly.</li>
+</ol>
+<h3 id="SQL-The-Magic-Of-Building"><a href="#SQL-The-Magic-Of-Building" class="headerlink" title="SQL The Magic Of Building"></a><em>SQL The Magic Of Building</em></h3><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. (OPTIONAL) Reset: Drop the table so we can rebuild it correctly</span></span><br><span class="line"><span class="comment">-- drop table if exists comments;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2. Create Table: Columns EXACTLY match your JavaScript</span></span><br><span class="line"><span class="keyword">create table</span> comments (</span><br><span class="line">  id <span class="type">bigint</span> generated <span class="keyword">by</span> <span class="keyword">default</span> <span class="keyword">as</span> <span class="keyword">identity</span> <span class="keyword">primary key</span>,</span><br><span class="line">  slug text <span class="keyword">not null</span>,      <span class="comment">-- Identifies which blog post the comment belongs to</span></span><br><span class="line">  name text <span class="keyword">not null</span>,      <span class="comment">-- The commenter's name</span></span><br><span class="line">  email text,              <span class="comment">-- Optional email</span></span><br><span class="line">  message text <span class="keyword">not null</span>,   <span class="comment">-- The actual comment</span></span><br><span class="line">  parent_id <span class="type">bigint</span>,        <span class="comment">-- (IMPORTANT) This allows for nested replies!</span></span><br><span class="line">  created_at <span class="type">timestamp</span> <span class="keyword">with</span> <span class="type">time</span> zone <span class="keyword">default</span> timezone(<span class="string">'utc'</span>::text, now()) <span class="keyword">not null</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3. Security: Enable Row Level Security (RLS)</span></span><br><span class="line"><span class="keyword">alter table</span> comments enable <span class="type">row</span> level security;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4. Policies: Allow the Public to Read &amp; Write</span></span><br><span class="line"><span class="comment">-- Allow anyone to SEE comments</span></span><br><span class="line"><span class="keyword">create</span> policy "Public can read comments" </span><br><span class="line"><span class="keyword">on</span> comments <span class="keyword">for</span> <span class="keyword">select</span> <span class="keyword">to</span> anon <span class="keyword">using</span> (<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Allow anyone to POST comments</span></span><br><span class="line"><span class="keyword">create</span> policy "Public can post comments" </span><br><span class="line"><span class="keyword">on</span> comments <span class="keyword">for</span> <span class="keyword">insert</span> <span class="keyword">to</span> anon <span class="keyword">with</span> <span class="keyword">check</span> (<span class="literal">true</span>);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+<hr>
+<blockquote>
+<p>Once you run this, in Supabase, go to<br><strong>Project Settings &gt; Data API</strong> get your <code>Project URL</code>.<br><strong>Project Settings &gt; API Keys &gt; Legacy anon, service_role API keys</strong>  get your<code>anon public key</code> </p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Pro Tip:</strong><br>The URL: It is Public. It is essentially the address of your database. It is safe to be seen.<br>The  anon (public) key: It is safe to publish, provided you have set up Row Level Security (RLS).</p>
+</blockquote>
+<hr>
+<h2 id="Step-2-Frontend-Integration"><a href="#Step-2-Frontend-Integration" class="headerlink" title="Step 2: Frontend Integration"></a><strong>Step 2: Frontend Integration</strong></h2><h3 id="1-Create-the-Component"><a href="#1-Create-the-Component" class="headerlink" title="1. Create the Component"></a><strong>1. Create the Component</strong></h3><p>Create a new file at: <code>themes/your-theme/layout/_partial/supabase-comments.ejs</code></p>
+<p>Download the exmaple <code>supabase-comments.ejs</code>: <a target="_blank" rel="noopener" href="https://github.com/TaiJP119/supabase-comments/blob/main/supabase-comments.ejs">supabase-comments.ejs</a></p>
+<h3 id="2-Configuration"><a href="#2-Configuration" class="headerlink" title="2. Configuration"></a><strong>2. Configuration</strong></h3><p>Open <code>themes/your-theme/_config.yml</code> and add this at the bottom:</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Supabase Comments Configuration</span></span><br><span class="line"><span class="attr">supabase:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">"[https://your-project-id.supabase.co](https://your-project-id.supabase.co)"</span></span><br><span class="line">  <span class="attr">key:</span> <span class="string">"your-anon-public-key-here"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-Add-to-Blog"><a href="#3-Add-to-Blog" class="headerlink" title="3. Add to Blog"></a><strong>3. Add to Blog</strong></h3><p>Now, open your <strong>Post Layout .ejs</strong> file (usually <code>themes/your-theme/layout/post.ejs</code> or <code>_partial/article.ejs</code> or <code>themes/your-theme/layout/post-detailed.ejs</code>).</p>
+<p>Add this code where you want the comments to appear (usually at the bottom):</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.supabase.enable) { %&gt;</span><br><span class="line">  &lt;div class="comments-section"&gt;</span><br><span class="line">    &lt;h3&gt;Join the Discussion&lt;/h3&gt;</span><br><span class="line">    &lt;%- partial('_partial/supabase-comments') %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="Step-3-Deployment"><a href="#Step-3-Deployment" class="headerlink" title="Step 3: Deployment"></a><strong>Step 3: Deployment</strong></h2><h3 id="Test-Locally"><a href="#Test-Locally" class="headerlink" title="Test Locally"></a>Test Locally</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (Optional) Install git deployer if you haven't yet</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="CONGRATULATION"><a href="#CONGRATULATION" class="headerlink" title="CONGRATULATION!"></a><strong>CONGRATULATION!</strong></h2><p>Now you have a comment system that is fully yours. No ads, no tracking, just pure community interaction.</p>
+<p>If you have any questions, feel free to leave a comment below… using the system we just built! </p>
+<pre><code>
+</code></pre>
 
                 
             </div>
@@ -447,7 +512,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://taijinpei.info/2025/04/16/Tidio-x-HEXO/">https://taijinpei.info/2025/04/16/Tidio-x-HEXO/</a>
+                    <a href="https://taijinpei.info/2025/12/15/Supabase-x-Hexo/">https://taijinpei.info/2025/12/15/Supabase-x-Hexo/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -485,8 +550,20 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Web/">
-                                    <span class="chip bg-color">Web</span>
+                                <a href="/tags/Supabase/">
+                                    <span class="chip bg-color">Supabase</span>
+                                </a>
+                            
+                                <a href="/tags/Web-Dev/">
+                                    <span class="chip bg-color">Web Dev</span>
+                                </a>
+                            
+                                <a href="/tags/Hexo/">
+                                    <span class="chip bg-color">Hexo</span>
+                                </a>
+                            
+                                <a href="/tags/Tutorial/">
+                                    <span class="chip bg-color">Tutorial</span>
                                 </a>
                             
                         </div>
@@ -532,17 +609,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2025/04/17/Oversea-download-MANGA-ONE-App/">
+                <a href="/2025/12/15/Supabase-x-Hexo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Oversea download マンガワン (MANGA ONE) App">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Supabase-x-Hexo [Build Own Comment System]">
                         
-                        <span class="card-title">Oversea download マンガワン (MANGA ONE) App</span>
+                        <span class="card-title">Supabase-x-Hexo [Build Own Comment System]</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -552,26 +630,39 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-12-15
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            TAI JIN PEI
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Dev-Logs/" class="post-category">
+                                    Dev Logs
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Japanese/">
-                        <span class="chip bg-color">Japanese</span>
+                    <a href="/tags/Supabase/">
+                        <span class="chip bg-color">Supabase</span>
                     </a>
                     
-                    <a href="/tags/Personal/">
-                        <span class="chip bg-color">Personal</span>
+                    <a href="/tags/Web-Dev/">
+                        <span class="chip bg-color">Web Dev</span>
+                    </a>
+                    
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Tutorial/">
+                        <span class="chip bg-color">Tutorial</span>
                     </a>
                     
                 </div>
@@ -585,13 +676,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/04/14/20250414/">
+                <a href="/2025/12/15/Supabase-x-Hexo%20copy/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hit Play and Share the Vibes! 🎼">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Hit Play and Share the Vibes! 🎼</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -602,7 +693,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-12-15
                             </span>
                         <span class="publish-author">
                             
@@ -611,14 +702,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Web/">
-                        <span class="chip bg-color">Web</span>
-                    </a>
-                    
                 </div>
                 
             </div>
