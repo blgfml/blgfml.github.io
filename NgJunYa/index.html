@@ -618,12 +618,11 @@ input.supa-input:focus, textarea.supa-input:focus {
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
     
-    // --- ⬇️ CONFIGURATION: PUT YOUR KEYS HERE ⬇️ ---
+// --- ⬇️ CONFIGURATION: LOADED FROM _config.yml ⬇️ ---
     const SUPABASE_URL = 'https://cihqzexmhqboqnuopplf.supabase.co'; 
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpaHF6ZXhtaHFib3FudW9wcGxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3MjY5MTUsImV4cCI6MjA4MTMwMjkxNX0.5llNltk7YxEi8cJu4VUKF3266itl8aBKwsxb7RznSOI';
     const EMOJI_LIST = [ '❤️', '🐾', 'ฅ^>⩊<^ฅ', '( °ヮ° ) ?', '🔥', '🎄', '⎛⎝ ≽  >  ⩊   < ≼ ⎠⎞', 'ദ്ദി ˉ͈̀꒳ˉ͈́ )✧'];
     // --------------------------------------------------
-
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     
     // Elements
