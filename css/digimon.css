@@ -17,6 +17,7 @@
     position: relative;
     font-family: 'Press Start 2P', monospace;
     image-rendering: pixelated;
+    container-type: inline-size;
 }
 
 /* --- SCREEN LAYER --- */
@@ -57,9 +58,17 @@
     text-align: center;
     width: 100%;
 }
-#msg-display { font-size: 8px; margin-bottom: 4px; text-transform: uppercase; }
-#time-display { font-size: 10px; }
+#msg-display { 
+    /* Was 8px. Now scales with width */
+    font-size: clamp(3px, 1.5cqi, 6px); 
+    margin-bottom: 4px; 
+    text-transform: uppercase; 
+}
 
+#time-display { 
+    /* Was 10px. Now scales with width */
+    font-size: clamp(3px, 2.5cqi, 10px); 
+}
 
 /* --- INVISIBLE BUTTONS --- */
 .digi-btn {
