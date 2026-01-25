@@ -1,0 +1,128 @@
+/* LOAD FONT */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* MAIN CONTAINER - The Image Skin */
+#digimon-container {
+    background-image: url('/medias/digimon/digivice.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    width: 100%;
+    /* CHANGE THIS VALUE TO MAKE IT BIGGER */
+    max-width: 600px; 
+    
+    aspect-ratio: 1.1 / 1; 
+    margin: 0 auto;
+    position: relative;
+    font-family: 'Press Start 2P', monospace;
+    image-rendering: pixelated;
+}
+
+/* --- SCREEN LAYER --- */
+.screen-layer {
+    position: absolute;
+    /* These percentages position the box over the green screen area of the image */
+    top: 34%;
+    left: 36%;
+    width: 28%;
+    height: 30%;
+    
+    /* Styling inner LCD screen */
+    /* background-color: #8bac0f; Retro GB Green */
+    background-color: transparent; /* Retro GB Green */
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    color: #0f380f; /* Dark green text */
+}
+
+/* The Pet Image */
+#pet-img {
+    width: 70%;
+    height: auto;
+    image-rendering: pixelated;
+    /* Filter to make colorful images look like monochromatic LCD */
+    /* filter: grayscale(100%) sepia(100%) hue-rotate(50deg) saturate(300%) contrast(0.8); */
+}
+
+/* On-screen text */
+.on-screen-stats {
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+#msg-display { font-size: 8px; margin-bottom: 4px; text-transform: uppercase; }
+#time-display { font-size: 10px; }
+
+
+/* --- INVISIBLE BUTTONS --- */
+.digi-btn {
+    position: absolute;
+    background: transparent; /* Invisible */
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    /* Optional: temporary red border to see where they are during setup */
+    /* border: 2px solid red; */ 
+}
+
+/* Visual feedback when clicking the invisible areas */
+.digi-btn:active {
+    background-color: rgba(18, 18, 18, 0.2); /* Slight shadow on press */
+}
+
+/* Positioning Over the Image Buttons */
+
+/* Left Big Button */
+.btn-left {
+    top: 40%;
+    left: 11%;
+    width: 16%;
+    height: 18%;
+}
+
+/* Right Top Button */
+.btn-right-top {
+    top: 32%;
+    right: 13%;
+    width: 15%;
+    height: 12%;
+    transform: rotate(-7deg); /* Match image tilt */
+}
+
+/* Right Bottom Button */
+.btn-right-bottom {
+    top: 53%;
+    right: 13%;
+    width: 15%;
+    height: 12%;
+    transform: rotate(-7deg);
+}
+
+/* --- MODAL (Screen Flash) --- */
+#evolve-modal {
+    display: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(15, 56, 15, 0.95); /* Dark overlay on LCD */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-align: center;
+    animation: flashScreen 0.3s infinite alternate;
+}
+
+.modal-title { font-size: 10px; color: #8bac0f; display: block; margin-bottom: 10px; }
+.modal-subtitle { font-size: 8px; color: #8bac0f; }
+
+@keyframes flashScreen {
+    from { background-color: rgba(15, 56, 15, 0.95); }
+    to { background-color: rgba(48, 98, 48, 0.95); }
+}
