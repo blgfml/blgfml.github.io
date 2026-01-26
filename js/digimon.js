@@ -12,7 +12,10 @@ class DigimonGame {
     this.requirements = data.requirements;
     this.petLines = data.petLines;
     this.skins = data.skins;
-    this.skinNames = data.skinNames;
+    
+    // --- UPDATED: FORCE UPPERCASE CONVERSION ---
+    // This ensures even if you type "Hikari Ver." in the data file, it becomes "HIKARI VER."
+    this.skinNames = data.skinNames.map(name => name.toUpperCase());
 
     // --- STATE INITIALIZATION ---
     this.currentPetIndex = 0;
