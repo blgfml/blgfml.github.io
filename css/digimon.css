@@ -10,7 +10,7 @@
     
     width: 100%;
     /* CHANGE THIS VALUE TO MAKE IT BIGGER */
-    max-width: 600px; 
+    max-width: 1000px;
     
     aspect-ratio: 1.1 / 1; 
     margin: 0 auto;
@@ -24,7 +24,7 @@
 .screen-layer {
     position: absolute;
     /* These percentages position the box over the green screen area of the image */
-    top: 34%;
+    top: 35%;
     left: 36%;
     width: 28%;
     height: 30%;
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
     color: #0f380f; /* Dark green text */
 }
 
@@ -86,14 +86,20 @@
     background-color: rgba(18, 18, 18, 0.2); /* Slight shadow on press */
 }
 
-/* Positioning Over the Image Buttons */
+/* --- D-PAD UP BUTTON --- */
+.btn-up {
+    top: 40%;     /* Higher up */
+    left: 14%;    /* Centered on the D-pad */
+    width: 10%;   /* Smaller touch area */
+    height: 9%;
+}
 
-/* Left Big Button */
-.btn-left {
-    top: 40%;
-    left: 11%;
-    width: 16%;
-    height: 18%;
+/* --- D-PAD DOWN BUTTON --- */
+.btn-down {
+    top: 49%;     /* Lower down */
+    left: 14%;
+    width: 10%;
+    height: 9%;
 }
 
 /* Right Top Button */
@@ -134,4 +140,84 @@
 @keyframes flashScreen {
     from { background-color: rgba(15, 56, 15, 0.95); }
     to { background-color: rgba(48, 98, 48, 0.95); }
+}
+/* --- NEW MENU UI (Static Window Style) --- */
+#menu-overlay {
+    display: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; 
+}
+
+/* The Static "Window" Bar */
+.menu-bar {
+    position: relative;
+    width: 90%;
+    height: 30%;
+    
+    /* FANCY LIGHTER BLUE GRADIENT */
+    background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+    
+    /* Double Border + Rounded Edges */
+    border: 2px solid white; 
+    outline: 2px solid #0f380f;
+    border-radius: 4px;
+    
+    /* "Glassy" Highlight */
+    box-shadow: 
+        inset 0 2px 5px rgba(255,255,255,0.7), /* Top highlight */
+        inset 0 -2px 5px rgba(0,0,0,0.2),      /* Bottom shadow */
+        0 5px 10px rgba(0,0,0,0.4);            /* Drop shadow */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* CRITICAL: THIS KEEPS THE SLIDING TEXT INSIDE THE BOX */
+    overflow: hidden; 
+}
+
+/* The Sliding Text */
+.menu-text {
+    position: absolute; 
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(8px, 3.5cqi, 14px); 
+    text-transform: uppercase;
+    
+    /* Text Shadow for contrast against light blue */
+    text-shadow: 
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+/* --- ANIMATIONS (Unchanged) --- */
+.slide-out-up { animation: slideOutUp 0.2s forwards; }
+.slide-in-up  { animation: slideInUp 0.2s forwards; }
+.slide-out-down { animation: slideOutDown 0.2s forwards; }
+.slide-in-down  { animation: slideInDown 0.2s forwards; }
+
+@keyframes slideOutUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-150%); opacity: 0; }
+}
+@keyframes slideInUp {
+    0% { transform: translateY(150%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideOutDown {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(150%); opacity: 0; }
+}
+@keyframes slideInDown {
+    0% { transform: translateY(-150%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }

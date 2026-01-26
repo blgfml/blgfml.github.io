@@ -335,29 +335,16 @@
 <link rel="stylesheet" href="/css/digimon.css">
 
 
-
-
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">Digimon Adventure</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <main class="container content">
     <div class="row">
         <div class="col s12 m10 offset-m1">
-            <div class="card">
+            <div class="card" style="background: transparent; box-shadow: none;">
                 <div class="card-content center-align" style="min-height: 400px; padding: 40px;">
                     <div id="digimon-container">
     <div class="screen-layer">
-        <img id="pet-img" alt="Pet">
+        <img id="pet-img" src="/medias/digimon/egg_1.png" alt="Pet">
+        <div id="menu-overlay">
+            </div>
         <div class="on-screen-stats">
             <div id="msg-display">PRESS START</div>
             <div id="time-display">T: 0:00</div>
@@ -369,10 +356,10 @@
             </div>
         </div>
     </div>
-    <button class="digi-btn btn-left" onclick="game.handleLeftInput()"></button>
+    <button class="digi-btn btn-up" onclick="game.handleUpInput()"></button>
+    <button class="digi-btn btn-down" onclick="game.handleDownInput()"></button>
     <button class="digi-btn btn-right-top" onclick="game.handleRightTopInput()"></button>
     <button class="digi-btn btn-right-bottom" onclick="game.handleRightBottomInput()"></button>
-
 </div>
 
                 </div>
@@ -380,6 +367,10 @@
         </div>
     </div>
 </main>
+
+
+<script src="/js/digimon-data.js"></script>
+
 
 
 <script src="/js/digimon.js"></script>
