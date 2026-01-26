@@ -1,223 +1,273 @@
 /* LOAD FONT */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 /* MAIN CONTAINER - The Image Skin */
 #digimon-container {
-    background-image: url('/medias/digimon/digivice.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-    width: 100%;
-    /* CHANGE THIS VALUE TO MAKE IT BIGGER */
-    max-width: 1000px;
-    
-    aspect-ratio: 1.1 / 1; 
-    margin: 0 auto;
-    position: relative;
-    font-family: 'Press Start 2P', monospace;
-    image-rendering: pixelated;
-    container-type: inline-size;
+  background-image: url("/medias/digimon/digivice.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  /* CHANGE THIS VALUE TO MAKE IT BIGGER */
+  max-width: 1000px;
+
+  aspect-ratio: 1.1 / 1;
+  margin: 0 auto;
+  position: relative;
+  font-family: "Press Start 2P", monospace;
+  image-rendering: pixelated;
+  container-type: inline-size;
 }
 
 /* --- SCREEN LAYER --- */
 .screen-layer {
-    position: absolute;
-    /* These percentages position the box over the green screen area of the image */
-    top: 35%;
-    left: 36%;
-    width: 28%;
-    height: 30%;
-    
-    /* Styling inner LCD screen */
-    /* background-color: #8bac0f; Retro GB Green */
-    background-color: transparent; /* Retro GB Green */
-    border-radius: 2px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
-    color: #0f380f; /* Dark green text */
+  position: absolute;
+  /* These percentages position the box over the green screen area of the image */
+  top: 35%;
+  left: 36%;
+  width: 28%;
+  height: 30%;
+
+  /* Styling inner LCD screen */
+  /* background-color: #8bac0f; Retro GB Green */
+  background-color: transparent; /* Retro GB Green */
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
+  color: #0f380f; /* Dark green text */
 }
 
-/* The Pet Image */
-#pet-img {
-    width: 70%;
-    height: auto;
-    image-rendering: pixelated;
-    /* Filter to make colorful images look like monochromatic LCD */
-    /* filter: grayscale(100%) sepia(100%) hue-rotate(50deg) saturate(300%) contrast(0.8); */
+/* The Partner Image */
+#partner-img {
+  width: 70%;
+  height: auto;
+  image-rendering: pixelated;
+  /* Filter to make colorful images look like monochromatic LCD */
+  /* filter: grayscale(100%) sepia(100%) hue-rotate(50deg) saturate(300%) contrast(0.8); */
 }
 
 /* On-screen text */
 .on-screen-stats {
-    margin-top: 5px;
-    text-align: center;
-    width: 100%;
+  margin-top: 5px;
+  text-align: center;
+  width: 100%;
 }
-#msg-display { 
-    /* Was 8px. Now scales with width */
-    font-size: clamp(3px, 1.5cqi, 6px); 
-    margin-bottom: 1px; 
-    text-transform: uppercase; 
+#msg-display {
+  /* Was 8px. Now scales with width */
+  font-size: clamp(3px, 1.5cqi, 6px);
+  margin-bottom: 1px;
+  text-transform: uppercase;
 }
 
-#time-display { 
-    /* Was 10px. Now scales with width */
-    font-size: clamp(3px, 1.5cqi, 6px); 
+#time-display {
+  /* Was 10px. Now scales with width */
+  font-size: clamp(3px, 1.5cqi, 6px);
 }
 
 /* --- INVISIBLE BUTTONS --- */
 .digi-btn {
-    position: absolute;
-    background: transparent; /* Invisible */
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    /* Optional: temporary red border to see where they are during setup */
-    /* border: 2px solid red; */ 
+  position: absolute;
+  background: transparent; /* Invisible */
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  /* Optional: temporary red border to see where they are during setup */
+  /* border: 2px solid red; */
 }
 
 /* Visual feedback when clicking the invisible areas */
 .digi-btn:active {
-    background-color: rgba(18, 18, 18, 0.2); /* Slight shadow on press */
+  background-color: rgba(18, 18, 18, 0.2); /* Slight shadow on press */
 }
 
 /* --- D-PAD UP BUTTON --- */
 .btn-up {
-    top: 40%;     /* Higher up */
-    left: 14%;    /* Centered on the D-pad */
-    width: 10%;   /* Smaller touch area */
-    height: 9%;
+  top: 40%; /* Higher up */
+  left: 14%; /* Centered on the D-pad */
+  width: 10%; /* Smaller touch area */
+  height: 9%;
 }
 
 /* --- D-PAD DOWN BUTTON --- */
 .btn-down {
-    top: 49%;     /* Lower down */
-    left: 14%;
-    width: 10%;
-    height: 9%;
+  top: 49%; /* Lower down */
+  left: 14%;
+  width: 10%;
+  height: 9%;
 }
 
 /* Right Top Button */
 .btn-right-top {
-    top: 32%;
-    right: 13%;
-    width: 15%;
-    height: 12%;
-    transform: rotate(-7deg); /* Match image tilt */
+  top: 32%;
+  right: 13%;
+  width: 15%;
+  height: 12%;
+  transform: rotate(-7deg); /* Match image tilt */
 }
 
 /* Right Bottom Button */
 .btn-right-bottom {
-    top: 53%;
-    right: 13%;
-    width: 15%;
-    height: 12%;
-    transform: rotate(-7deg);
+  top: 53%;
+  right: 13%;
+  width: 15%;
+  height: 12%;
+  transform: rotate(-7deg);
 }
 
 /* --- MODAL (Screen Flash) --- */
 #evolve-modal {
-    display: none;
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(15, 56, 15, 0.95); /* Dark overlay on LCD */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    text-align: center;
-    animation: flashScreen 0.3s infinite alternate;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 56, 15, 0.95); /* Dark overlay on LCD */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  text-align: center;
+  animation: flashScreen 0.3s infinite alternate;
 }
 
-.modal-title { font-size: 10px; color: #8bac0f; display: block; margin-bottom: 10px; }
-.modal-subtitle { font-size: 8px; color: #8bac0f; }
+.modal-title {
+  font-size: 10px;
+  color: #8bac0f;
+  display: block;
+  margin-bottom: 10px;
+}
+.modal-subtitle {
+  font-size: 8px;
+  color: #8bac0f;
+}
 
 @keyframes flashScreen {
-    from { background-color: rgba(15, 56, 15, 0.95); }
-    to { background-color: rgba(48, 98, 48, 0.95); }
+  from {
+    background-color: rgba(15, 56, 15, 0.95);
+  }
+  to {
+    background-color: rgba(48, 98, 48, 0.95);
+  }
 }
 /* --- NEW MENU UI (Static Window Style) --- */
 #menu-overlay {
-    display: none;
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent; 
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
 }
 
 /* The Static "Window" Bar */
 .menu-bar {
-    position: relative;
-    width: 90%;
-    height: 30%;
-    
-    /* FANCY LIGHTER BLUE GRADIENT */
-    background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
-    
-    /* Double Border + Rounded Edges */
-    border: 2px solid white; 
-    outline: 2px solid #0f380f;
-    border-radius: 4px;
-    
-    /* "Glassy" Highlight */
-    box-shadow: 
-        inset 0 2px 5px rgba(255,255,255,0.7), /* Top highlight */
-        inset 0 -2px 5px rgba(0,0,0,0.2),      /* Bottom shadow */
-        0 5px 10px rgba(0,0,0,0.4);            /* Drop shadow */
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* CRITICAL: THIS KEEPS THE SLIDING TEXT INSIDE THE BOX */
-    overflow: hidden; 
+  position: relative;
+  width: 90%;
+  height: 30%;
+
+  /* FANCY LIGHTER BLUE GRADIENT */
+  background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+
+  /* Double Border + Rounded Edges */
+  border: 2px solid white;
+  outline: 2px solid #0f380f;
+  border-radius: 4px;
+
+  /* "Glassy" Highlight */
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.7),
+    /* Top highlight */ inset 0 -2px 5px rgba(0, 0, 0, 0.2),
+    /* Bottom shadow */ 0 5px 10px rgba(0, 0, 0, 0.4); /* Drop shadow */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* CRITICAL: THIS KEEPS THE SLIDING TEXT INSIDE THE BOX */
+  overflow: hidden;
 }
 
 /* The Sliding Text */
 .menu-text {
-    position: absolute; 
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-family: 'Press Start 2P', monospace;
-    font-size: clamp(8px, 3.5cqi, 14px); 
-    text-transform: uppercase;
-    
-    /* Text Shadow for contrast against light blue */
-    text-shadow: 
-        -1px -1px 0 #000,  
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(8px, 3.5cqi, 14px);
+  text-transform: uppercase;
+
+  /* Text Shadow for contrast against light blue */
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 /* --- ANIMATIONS (Unchanged) --- */
-.slide-out-up { animation: slideOutUp 0.2s forwards; }
-.slide-in-up  { animation: slideInUp 0.2s forwards; }
-.slide-out-down { animation: slideOutDown 0.2s forwards; }
-.slide-in-down  { animation: slideInDown 0.2s forwards; }
+.slide-out-up {
+  animation: slideOutUp 0.2s forwards;
+}
+.slide-in-up {
+  animation: slideInUp 0.2s forwards;
+}
+.slide-out-down {
+  animation: slideOutDown 0.2s forwards;
+}
+.slide-in-down {
+  animation: slideInDown 0.2s forwards;
+}
 
 @keyframes slideOutUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-150%); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
 }
 @keyframes slideInUp {
-    0% { transform: translateY(150%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes slideOutDown {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(150%); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150%);
+    opacity: 0;
+  }
 }
 @keyframes slideInDown {
-    0% { transform: translateY(-150%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

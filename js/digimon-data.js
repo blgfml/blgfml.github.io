@@ -7,7 +7,7 @@ window.DigimonData = {
         PHASE_4: 3, PHASE_5: 3, PHASE_6: 3, PHASE_7: 3
     },
 
-    // --- PET DATA ---
+    // --- PARTNER DATA ---
     petLines: [
         {
             name: "Agumon",

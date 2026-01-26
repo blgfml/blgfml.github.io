@@ -31,7 +31,7 @@ class DigimonGame {
     this.timeAtLastEvolution = 0;
 
     // Menu Config
-    this.menuOptions = ["SKIN", "PET", "CANCEL"];
+    this.menuOptions = ["DIGIVICE", "PARTNER", "CANCEL"];
     this.menuIndex = 0;
     this.skinSelectionIndex = 0;
     this.petSelectionIndex = 0;
@@ -46,7 +46,7 @@ class DigimonGame {
     // --- DOM ELEMENTS ---
     this.els = {
       container: document.getElementById('digimon-container'),
-      img: document.getElementById('pet-img'),
+      img: document.getElementById('partner-img'),
       msg: document.getElementById('msg-display'),
       time: document.getElementById('time-display'),
       modal: document.getElementById('evolve-modal'),
@@ -210,13 +210,13 @@ class DigimonGame {
   }
   updatePetMenuDisplay() {
     this.els.menuOverlay.style.display = 'none';
-    this.els.time.innerText = "PICK EGG:";
+    this.els.time.innerText = "PICK PARTNER:";
     this.els.msg.innerText = "> " + this.petLines[this.petSelectionIndex].name;
   }
 
   applySkin(index) {
     this.els.container.style.backgroundImage = `url('${this.skins[index]}')`;
-    this.flashMessage("SKIN SET!");
+    this.flashMessage("DIGIVICE SET!");
   }
 
   applyPet(index) {
