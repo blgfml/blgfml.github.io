@@ -285,7 +285,26 @@ window.DigimonData = {
                     }
                 ]
             }
+        },
+        {
+            name: "超かぐや姫！", tree: {
+                PHASE_0: [{
+                    id: "kaguya",
+                    images: ["/medias/digimon/digitama/ky1.png", "/medias/digimon/digitama/ky2.png"],
+                    next: ["IrohaSakayori"]
+                }],
+                PHASE_1: [{
+                    id: "IrohaSakayori",
+                    images: ["/medias/digimon/digitama/cy1.png", "/medias/digimon/digitama/cy2.png"],
+                    next: ["YachiyoRunami"]
+                }],
+                PHASE_2: [{
+                    id: "YachiyoRunami",
+                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"]
+                }]
+            }
         }
+
     ],
     // --- SKIN DATA ---
     skins: [
