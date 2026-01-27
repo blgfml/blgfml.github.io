@@ -16,42 +16,148 @@ window.DigimonData = {
                 PHASE_0: [{
                     id: "botamon",
                     images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/bota.gif", "https://humulos.com/digimon/images/dot/vbdm/bota.gif"],
-                    next: ["koromon"]
+                    next: ["koromon"],
+                    conditions: {
+                        time: 3,
+                        minWPM: 20,
+                        minAccuracy: 40,
+                        maxAccuracy: 100
+                    }
                 }],
 
                 // --- PHASE 1 ---
                 PHASE_1: [{
                     id: "koromon",
                     images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/koro.gif", "https://humulos.com/digimon/images/dot/vbdm/koro.gif"],
-                    next: ["agumon", "agumonblack"]
+                    next: ["agumon", "agumonblack"],
+                    conditions: {
+                        time: 3,
+                        minWPM: 20,
+                        minAccuracy: 40,
+                        maxAccuracy: 100
+                    }
                 }],
 
                 // --- PHASE 2 ---
                 PHASE_2: [
-                    { id: "agumon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/agu.gif", "https://humulos.com/digimon/images/dot/vbdm/agu.gif"], next: ["greymon"] },
-                    { id: "agumonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/agu_b.gif", "https://humulos.com/digimon/images/dot/vbdm/frame2/agu_b.gif"], next: ["greymonblack"] }
+                    {
+                        id: "agumon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/agu.gif", "https://humulos.com/digimon/images/dot/vbdm/agu.gif"], next: ["greymon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 30,
+                            minAccuracy: 30,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "agumonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/agu_b.gif", "https://humulos.com/digimon/images/dot/vbdm/frame2/agu_b.gif"], next: ["greymonblack"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 20,
+                            minAccuracy: 51,
+                            maxAccuracy: 100
+                        }
+                    }
                 ],
 
-                // --- PHASE 3 ---
                 PHASE_3: [
-                    { id: "greymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grey.gif", "https://humulos.com/digimon/images/dot/vbdm/grey.gif"], next: ["metalgreymon", "skullgreymon"] },
-                    { id: "greymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grey_b.gif", "https://humulos.com/digimon/images/dot/vbdm/grey_b.gif"], next: ["metalgreymonblack", "skullgreymon"] }
+                    {
+                        id: "greymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grey.gif", "https://humulos.com/digimon/images/dot/vbdm/grey.gif"], next: ["metalgreymon", "skullgreymon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 40,
+                            minAccuracy: 40,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "greymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grey_b.gif", "https://humulos.com/digimon/images/dot/vbdm/grey_b.gif"], next: ["metalgreymonblack", "skullgreymon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 50,
+                            minAccuracy: 50,
+                            maxAccuracy: 100
+                        }
+                    }
                 ],
 
-                // ... Keep filling this out for PHASE_4 to PHASE_7 ...
                 PHASE_4: [
-                    { id: "metalgreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/metalgrey_va.gif", "https://humulos.com/digimon/images/dot/vbdm/metalgrey_va.gif"], next: ["wargreymon", "victorygreymon"] },
-                    { id: "skullgreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/skullgrey.gif", "https://humulos.com/digimon/images/dot/vbdm/skullgrey.gif"], next: ["wargreymonblack"] },
-                    { id: "metalgreymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/metalgrey_vi.gif", "https://humulos.com/digimon/images/dot/vbdm/metalgrey_vi.gif"], next: ["wargreymonblack"] },
+                    {
+                        id: "metalgreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/metalgrey_va.gif", "https://humulos.com/digimon/images/dot/vbdm/metalgrey_va.gif"], next: ["wargreymon", "victorygreymon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 50,
+                            minAccuracy: 50,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "skullgreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/skullgrey.gif", "https://humulos.com/digimon/images/dot/vbdm/skullgrey.gif"], next: ["wargreymonblack"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 60,
+                            minAccuracy: 55,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "metalgreymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/metalgrey_vi.gif", "https://humulos.com/digimon/images/dot/vbdm/metalgrey_vi.gif"], next: ["wargreymonblack"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 65,
+                            minAccuracy: 60,
+                            maxAccuracy: 100
+                        }
+                    },
                 ],
                 PHASE_5: [
-                    { id: "wargreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/wargrey.gif", "https://humulos.com/digimon/images/dot/vbdm/wargrey.gif"], next: ["omegamon"] },
-                    { id: "victorygreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/victorygrey.gif", "https://humulos.com/digimon/images/dot/vbdm/victorygrey.gif"], next: ["omegamon"] },
-                    { id: "wargreymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/blackwargrey.gif", "https://humulos.com/digimon/images/dot/vbdm/blackwargrey.gif"], next: ["omegamonblack"] },
+                    {
+                        id: "wargreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/wargrey.gif", "https://humulos.com/digimon/images/dot/vbdm/wargrey.gif"], next: ["omegamon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 60,
+                            minAccuracy: 60,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "victorygreymon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/victorygrey.gif", "https://humulos.com/digimon/images/dot/vbdm/victorygrey.gif"], next: ["omegamon"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 70,
+                            minAccuracy: 65,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "wargreymonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/blackwargrey.gif", "https://humulos.com/digimon/images/dot/vbdm/blackwargrey.gif"], next: ["omegamonblack"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 80,
+                            minAccuracy: 70,
+                            maxAccuracy: 100
+                        }
+                    },
                 ],
                 PHASE_6: [
-                    { id: "omegamon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/omega.gif", "https://humulos.com/digimon/images/dot/vbdm/omega.gif"] },
-                    { id: "omegamonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/omega_z.gif", "https://humulos.com/digimon/images/dot/vbdm/omega_z.gif"] }
+                    {
+                        id: "omegamon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/omega.gif", "https://humulos.com/digimon/images/dot/vbdm/omega.gif"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 70,
+                            minAccuracy: 70,
+                            maxAccuracy: 100
+                        }
+                    },
+                    {
+                        id: "omegamonblack", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/omega_z.gif", "https://humulos.com/digimon/images/dot/vbdm/omega_z.gif"],
+                        conditions: {
+                            time: 3,
+                            minWPM: 80,
+                            minAccuracy: 75,
+                            maxAccuracy: 100
+                        }
+                    }
                 ]
             }
         },
@@ -63,37 +169,76 @@ window.DigimonData = {
                     {
                         id: "chicomon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/chico.gif", "https://humulos.com/digimon/images/dot/vbdm/chico.gif"],
-                        next: ["chibimon"]
+                        next: ["chibimon"],
+                        conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                     }],
                 PHASE_1: [
                     {
                         id: "chibimon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/chibi.gif", "https://humulos.com/digimon/images/dot/vbdm/chibi.gif"],
-                        next: ["vmon"]
+                        next: ["vmon"],
+                        conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
                     }],
                 PHASE_2: [
                     {
                         id: "vmon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/v.gif", "https://humulos.com/digimon/images/dot/vbdm/v.gif"],
-                        next: ["vdramon", "xvmon", "fladramon", "lighdramon"]
+                        next: ["vdramon", "xvmon", "fladramon", "lighdramon"],
+                        conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
                     }],
                 PHASE_3: [
-                    { id: "vdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/vdra.gif", "https://humulos.com/digimon/images/dot/vbdm/vdra.gif"], next: ["aerovdramon", "goldvdramon", "sagittari"] },
-                    { id: "xvmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/xv.gif", "https://humulos.com/digimon/images/dot/vbdm/xv.gif"], next: ["paildramon", "goldvdramon"] },
-                    { id: "fladramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/fladra.gif", "https://humulos.com/digimon/images/dot/vbdm/fladra.gif"], next: ["aerovdramon", "sagittari"] },
-                    { id: "lighdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/lighdra.gif", "https://humulos.com/digimon/images/dot/vbdm/lighdra.gif"], next: ["paildramon"] }
+                    {
+                        id: "vdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/vdra.gif", "https://humulos.com/digimon/images/dot/vbdm/vdra.gif"], next: ["aerovdramon", "goldvdramon", "sagittari"],
+                        conditions: { time: 3, minWPM: 35, minAccuracy: 40, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "xvmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/xv.gif", "https://humulos.com/digimon/images/dot/vbdm/xv.gif"], next: ["paildramon", "goldvdramon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 45, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "fladramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/fladra.gif", "https://humulos.com/digimon/images/dot/vbdm/fladra.gif"], next: ["aerovdramon", "sagittari"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 50, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "lighdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/lighdra.gif", "https://humulos.com/digimon/images/dot/vbdm/lighdra.gif"], next: ["paildramon"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 55, maxAccuracy: 100 }
+                    }
                 ],
                 PHASE_4: [
-                    { id: "aerovdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/aerovdra.gif", "https://humulos.com/digimon/images/dot/vbdm/aerovdra.gif"], next: ["ulforcevdramon", "imperialdra_dmon"] },
-                    { id: "goldvdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/goldvdra.gif", "https://humulos.com/digimon/images/dot/vbdm/goldvdra.gif"], next: ["imperialdra_dmon", "imperialdra_fmon"] },
-                    { id: "sagittari", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/sagittari.gif", "https://humulos.com/digimon/images/dot/vbdm/sagittari.gif"], next: ["ulforcevdramon", "magnamon"] },
-                    { id: "paildramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/paildra.gif", "https://humulos.com/digimon/images/dot/vbdm/paildra.gif"], next: ["magnamon", "imperialdra_fmon"] }
+                    {
+                        id: "aerovdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/aerovdra.gif", "https://humulos.com/digimon/images/dot/vbdm/aerovdra.gif"], next: ["ulforcevdramon", "imperialdra_dmon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 50, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "goldvdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/goldvdra.gif", "https://humulos.com/digimon/images/dot/vbdm/goldvdra.gif"], next: ["imperialdra_dmon", "imperialdra_fmon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 55, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "sagittari", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/sagittari.gif", "https://humulos.com/digimon/images/dot/vbdm/sagittari.gif"], next: ["ulforcevdramon", "magnamon"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 60, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "paildramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/paildra.gif", "https://humulos.com/digimon/images/dot/vbdm/paildra.gif"], next: ["magnamon", "imperialdra_fmon"],
+                        conditions: { time: 3, minWPM: 75, minAccuracy: 65, maxAccuracy: 100 }
+                    }
                 ],
                 PHASE_5: [
-                    { id: "ulforcevdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/ulforcevdra.gif", "https://humulos.com/digimon/images/dot/vbdm/ulforcevdra.gif"] },
-                    { id: "imperialdra_dmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/imperialdra_d.gif", "https://humulos.com/digimon/images/dot/vbdm/imperialdra_d.gif"] },
-                    { id: "imperialdra_fmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/imperialdra_f.gif", "https://humulos.com/digimon/images/dot/vbdm/imperialdra_f.gif"] },
-                    { id: "magnamon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/magna.gif", "https://humulos.com/digimon/images/dot/vbdm/magna.gif"] }
+                    {
+                        id: "ulforcevdramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/ulforcevdra.gif", "https://humulos.com/digimon/images/dot/vbdm/ulforcevdra.gif"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 60, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "imperialdra_dmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/imperialdra_d.gif", "https://humulos.com/digimon/images/dot/vbdm/imperialdra_d.gif"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 65, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "imperialdra_fmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/imperialdra_f.gif", "https://humulos.com/digimon/images/dot/vbdm/imperialdra_f.gif"],
+                        conditions: { time: 3, minWPM: 75, minAccuracy: 70, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "magnamon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/magna.gif", "https://humulos.com/digimon/images/dot/vbdm/magna.gif"],
+                        conditions: { time: 3, minWPM: 85, minAccuracy: 75, maxAccuracy: 100 }
+                    }
                 ],
             }
         },
@@ -104,39 +249,81 @@ window.DigimonData = {
                     {
                         id: "jyarimon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/jyari.gif", "https://humulos.com/digimon/images/dot/vbdm/jyari.gif"],
-                        next: ["gigimon"]
+                        next: ["gigimon"],
+                        conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                     }],
                 PHASE_1: [
                     {
                         id: "gigimon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/gigi.gif", "https://humulos.com/digimon/images/dot/vbdm/gigi.gif"],
-                        next: ["guilmon"]
+                        next: ["guilmon"],
+                        conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
                     }],
                 PHASE_2: [
                     {
                         id: "guilmon",
                         images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/guil.gif", "https://humulos.com/digimon/images/dot/vbdm/guil.gif"],
-                        next: ["siesaMmon", "growmon", "devidramon"]
+                        next: ["siesaMmon", "growmon", "devidramon"],
+                        conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
                     }
                 ],
                 PHASE_3: [
-                    { id: "siesaMmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/siesa.gif", "https://humulos.com/digimon/images/dot/vbdm/siesa.gif"], next: ["vajramon", "majiramon", "mihiramon"] },
-                    { id: "growmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grow.gif", "https://humulos.com/digimon/images/dot/vbdm/grow.gif"], next: ["megalogrow_omon", "megalogrowmon", "sandiramon"] },
-                    { id: "devidramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/devidra.gif", "https://humulos.com/digimon/images/dot/vbdm/devidra.gif"], next: ["vajramon", "majiramon", "sandiramon"] }
+                    {
+                        id: "siesaMmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/siesa.gif", "https://humulos.com/digimon/images/dot/vbdm/siesa.gif"], next: ["vajramon", "majiramon", "mihiramon"],
+                        conditions: { time: 3, minWPM: 35, minAccuracy: 40, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "growmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/grow.gif", "https://humulos.com/digimon/images/dot/vbdm/grow.gif"], next: ["megalogrow_omon", "megalogrowmon", "sandiramon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 45, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "devidramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/devidra.gif", "https://humulos.com/digimon/images/dot/vbdm/devidra.gif"], next: ["vajramon", "majiramon", "sandiramon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 50, maxAccuracy: 100 }
+                    }
                 ],
                 PHASE_4: [
-                    { id: "vajramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/vajra.gif", "https://humulos.com/digimon/images/dot/vbdm/vajra.gif"], next: ["dukemon", "megidramon"] },
-                    { id: "majiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/majira.gif", "https://humulos.com/digimon/images/dot/vbdm/majira.gif"], next: ["dukemon", "megidramon"] },
-                    { id: "mihiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/mihira.gif", "https://humulos.com/digimon/images/dot/vbdm/mihira.gif"], next: ["dukemon", "duke_xmon"] },
-                    { id: "megalogrow_omon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megalogrow_o.gif", "https://humulos.com/digimon/images/dot/vbdm/megalogrow_o.gif"], next: ["duke_xmon", "duke_cmon"] },
-                    { id: "megalogrowmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megalogrow.gif", "https://humulos.com/digimon/images/dot/vbdm/megalogrow.gif"], next: ["dukemon", "megidramon", "duke_cmon"] },
-                    { id: "sandiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/sandira.gif", "https://humulos.com/digimon/images/dot/vbdm/sandira.gif"], next: ["duke_xmon", "duke_cmon"] },
+                    {
+                        id: "vajramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/vajra.gif", "https://humulos.com/digimon/images/dot/vbdm/vajra.gif"], next: ["dukemon", "megidramon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 50, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "majiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/majira.gif", "https://humulos.com/digimon/images/dot/vbdm/majira.gif"], next: ["dukemon", "megidramon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 55, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "mihiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/mihira.gif", "https://humulos.com/digimon/images/dot/vbdm/mihira.gif"], next: ["dukemon", "duke_xmon"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 60, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "megalogrow_omon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megalogrow_o.gif", "https://humulos.com/digimon/images/dot/vbdm/megalogrow_o.gif"], next: ["duke_xmon", "duke_cmon"],
+                        conditions: { time: 3, minWPM: 75, minAccuracy: 65, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "megalogrowmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megalogrow.gif", "https://humulos.com/digimon/images/dot/vbdm/megalogrow.gif"], next: ["dukemon", "megidramon", "duke_cmon"],
+                        conditions: { time: 3, minWPM: 85, minAccuracy: 70, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "sandiramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/sandira.gif", "https://humulos.com/digimon/images/dot/vbdm/sandira.gif"], next: ["duke_xmon", "duke_cmon"],
+                        conditions: { time: 3, minWPM: 95, minAccuracy: 75, maxAccuracy: 100 }
+                    },
                 ],
                 PHASE_5: [
-                    { id: "dukemon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke.gif", "https://humulos.com/digimon/images/dot/vbdm/duke.gif"], next: ["duke_xmon", "duke_cmon"] },
-                    { id: "megidramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megidra.gif", "https://humulos.com/digimon/images/dot/vbdm/megidra.gif"], next: ["duke_xmon", "duke_cmon"] },
-                    { id: "duke_xmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke_x.gif", "https://humulos.com/digimon/images/dot/vbdm/duke_x.gif"], next: [] },
-                    { id: "duke_cmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke_c.gif", "https://humulos.com/digimon/images/dot/vbdm/duke_c.gif"], next: [] }
+                    {
+                        id: "dukemon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke.gif", "https://humulos.com/digimon/images/dot/vbdm/duke.gif"], next: ["duke_xmon", "duke_cmon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 60, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "megidramon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/megidra.gif", "https://humulos.com/digimon/images/dot/vbdm/megidra.gif"], next: ["duke_xmon", "duke_cmon"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 65, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "duke_xmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke_x.gif", "https://humulos.com/digimon/images/dot/vbdm/duke_x.gif"], next: [],
+                        conditions: { time: 3, minWPM: 75, minAccuracy: 70, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "duke_cmon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/duke_c.gif", "https://humulos.com/digimon/images/dot/vbdm/duke_c.gif"], next: [],
+                        conditions: { time: 3, minWPM: 85, minAccuracy: 75, maxAccuracy: 100 }
+                    }
                 ],
             }
         },
@@ -147,28 +334,46 @@ window.DigimonData = {
                 PHASE_0: [{
                     id: "yukimibotamon",
                     images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/yukimibota.gif", "https://humulos.com/digimon/images/dot/vbdm/yukimibota.gif"],
-                    next: ["plotmon"]
+                    next: ["plotmon"],
+                    conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
                 PHASE_1: [{
                     id: "plotmon",
                     images: ["https://humulos.com/digimon/images/dot/d3c/frame2/plot.gif", "https://humulos.com/digimon/images/dot/d3c/plot.gif"],
-                    next: ["tailmon"]
+                    next: ["tailmon"],
+                    conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
                 }],
                 PHASE_2: [{
                     id: "tailmon",
                     images: ["https://humulos.com/digimon/images/dot/d3c/frame2/tail.gif", "https://humulos.com/digimon/images/dot/d3c/tail.gif"],
-                    next: ["nefertimon", "silphymon", "angewomon"]
+                    next: ["nefertimon", "silphymon", "angewomon"],
+                    conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
                 }],
                 PHASE_3: [
-                    { id: "nefertimon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/neferti.gif", "https://humulos.com/digimon/images/dot/d3c/neferti.gif"], next: ["holydramon"] },
-                    { id: "silphymon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/silphy.gif", "https://humulos.com/digimon/images/dot/d3c/silphy.gif"], next: ["holydramon"] },
-                    { id: "angewomon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/angewo.gif", "https://humulos.com/digimon/images/dot/d3c/angewo.gif"], next: ["holydramon"] }
+                    {
+                        id: "nefertimon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/neferti.gif", "https://humulos.com/digimon/images/dot/d3c/neferti.gif"], next: ["holydramon"],
+                        conditions: { time: 3, minWPM: 35, minAccuracy: 40, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "silphymon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/silphy.gif", "https://humulos.com/digimon/images/dot/d3c/silphy.gif"], next: ["holydramon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 45, maxAccuracy: 100 }
+                    },
+                    {
+                        id: "angewomon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/angewo.gif", "https://humulos.com/digimon/images/dot/d3c/angewo.gif"], next: ["holydramon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 50, maxAccuracy: 100 }
+                    }
                 ],
                 PHASE_4: [
-                    { id: "holydramon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/holydra.gif", "https://humulos.com/digimon/images/dot/d3c/holydra.gif"], next: ["angewomon"] }
+                    {
+                        id: "holydramon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/holydra.gif", "https://humulos.com/digimon/images/dot/d3c/holydra.gif"], next: ["angewomon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 50, maxAccuracy: 100 }
+                    }
                 ],
                 PHASE_5: [
-                    { id: "angewomon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/angewo.gif", "https://humulos.com/digimon/images/dot/d3c/angewo.gif"] }
+                    {
+                        id: "angewomon", images: ["https://humulos.com/digimon/images/dot/d3c/frame2/angewo.gif", "https://humulos.com/digimon/images/dot/d3c/angewo.gif"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 60, maxAccuracy: 100 }
+                    }
                 ]
             }
         },
@@ -227,61 +432,75 @@ window.DigimonData = {
             name: "Godzilamon", tree: {
                 PHASE_0: [{
                     id: "botamon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/bota.gif", "https://humulos.com/digimon/images/dot/vbdm/bota.gif"],
-                    next: ["koromon"]
+                    next: ["koromon"],
+                    conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
                 PHASE_1: [{
                     id: "koromon", images: ["https://humulos.com/digimon/images/dot/vbdm/frame2/koro.gif", "https://humulos.com/digimon/images/dot/vbdm/koro.gif"],
-                    next: ["babygodzillamon", "monodramon"]
+                    next: ["babygodzillamon", "monodramon"],
+                    conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
                 }],
                 PHASE_2: [{
                     id: "babygodzillamon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/babygodzilla.gif", "https://humulos.com/digimon/images/dot/dmgz/babygodzilla.gif"],
-                    next: ["godzillasaurusmon"]
+                    next: ["godzillasaurusmon"],
+                    conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
                 },
                 {
                     id: "monodramon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/monodra.gif", "https://humulos.com/digimon/images/dot/dmgz/monodra.gif"],
-                    next: ["kingghidorahmon", "giganmon"]
+                    next: ["kingghidorahmon", "giganmon"],
+                    conditions: { time: 3, minWPM: 35, minAccuracy: 35, maxAccuracy: 100 }
                 }
                 ],
                 PHASE_3: [
                     {
                         id: "godzillasaurusmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/godzillasaurus.gif", "https://humulos.com/digimon/images/dot/dmgz/godzillasaurus.gif"],
-                        next: ["godzilla_1954mon"]
+                        next: ["godzilla_1954mon"],
+                        conditions: { time: 3, minWPM: 35, minAccuracy: 40, maxAccuracy: 100 }
                     },
                     {
                         id: "kingghidorahmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/kingghidorah.gif", "https://humulos.com/digimon/images/dot/dmgz/kingghidorah.gif"],
-                        next: ["mechakingghidorahmon"]
+                        next: ["mechakingghidorahmon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 45, maxAccuracy: 100 }
                     },
                     {
                         id: "giganmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/gigan.gif", "https://humulos.com/digimon/images/dot/dmgz/gigan.gif"],
-                        next: ["kiryumon"]
+                        next: ["kiryumon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 50, maxAccuracy: 100 }
                     }
                 ],
                 PHASE_4: [
                     {
                         id: "godzilla_1954mon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/godzilla_1954.gif", "https://humulos.com/digimon/images/dot/dmgz/godzilla_1954.gif"],
-                        next: ["burninggodzillamon", "godzilla_1999mon"]
+                        next: ["burninggodzillamon", "godzilla_1999mon"],
+                        conditions: { time: 3, minWPM: 45, minAccuracy: 50, maxAccuracy: 100 }
                     },
                     {
                         id: "mechakingghidorahmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/mechakingghidorah.gif", "https://humulos.com/digimon/images/dot/dmgz/mechakingghidorah.gif"],
-                        next: ["mechagodzillamon"]
+                        next: ["mechagodzillamon"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 55, maxAccuracy: 100 }
                     },
                     {
                         id: "kiryumon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/kiryu.gif", "https://humulos.com/digimon/images/dot/dmgz/kiryu.gif"],
-                        next: ["mugendra_mmon"]
+                        next: ["mugendra_mmon"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 60, maxAccuracy: 100 }
                     }
                 ],
                 PHASE_5: [
                     {
-                        id: "burninggodzillamon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/burninggodzilla.gif", "https://humulos.com/digimon/images/dot/dmgz/burninggodzilla.gif"]
+                        id: "burninggodzillamon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/burninggodzilla.gif", "https://humulos.com/digimon/images/dot/dmgz/burninggodzilla.gif"],
+                        conditions: { time: 3, minWPM: 55, minAccuracy: 60, maxAccuracy: 100 }
                     },
                     {
-                        id: "godzilla_1999mon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/godzilla_1999.gif", "https://humulos.com/digimon/images/dot/dmgz/godzilla_1999.gif"]
+                        id: "godzilla_1999mon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/godzilla_1999.gif", "https://humulos.com/digimon/images/dot/dmgz/godzilla_1999.gif"],
+                        conditions: { time: 3, minWPM: 65, minAccuracy: 65, maxAccuracy: 100 }
                     },
                     {
-                        id: "mechagodzillamon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/mechagodzilla.gif", "https://humulos.com/digimon/images/dot/dmgz/mechagodzilla.gif"]
+                        id: "mechagodzillamon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/mechagodzilla.gif", "https://humulos.com/digimon/images/dot/dmgz/mechagodzilla.gif"],
+                        conditions: { time: 3, minWPM: 75, minAccuracy: 70, maxAccuracy: 100 }
                     },
                     {
-                        id: "mugendra_mmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/mugendramon.gif", "https://humulos.com/digimon/images/dot/dmgz/mugendramon.gif"]
+                        id: "mugendra_mmon", images: ["https://humulos.com/digimon/images/dot/dmgz/frame2/mugendramon.gif", "https://humulos.com/digimon/images/dot/dmgz/mugendramon.gif"],
+                        conditions: { time: 3, minWPM: 85, minAccuracy: 75, maxAccuracy: 100 }
                     }
                 ]
             }
@@ -291,16 +510,19 @@ window.DigimonData = {
                 PHASE_0: [{
                     id: "kaguya",
                     images: ["/medias/digimon/digitama/ky1.png", "/medias/digimon/digitama/ky2.png"],
-                    next: ["IrohaSakayori"]
+                    next: ["IrohaSakayori"],
+                    conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
                 PHASE_1: [{
                     id: "IrohaSakayori",
                     images: ["/medias/digimon/digitama/cy1.png", "/medias/digimon/digitama/cy2.png"],
-                    next: ["YachiyoRunami"]
+                    next: ["YachiyoRunami"],
+                    conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
                 }],
                 PHASE_2: [{
                     id: "YachiyoRunami",
-                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"]
+                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"],
+                    conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
                 }]
             }
         }
