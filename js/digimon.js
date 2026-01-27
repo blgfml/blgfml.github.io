@@ -26,7 +26,7 @@ class DigimonGame {
 
     // GAME LOOP
     this.gameState = 'GAME';
-    this.isPlaying = true; // --- CHANGE: Default to TRUE (Always On) ---
+    this.isPlaying = true;
     this.totalSeconds = 0;
     this.timeAtLastEvolution = 0;
 
@@ -58,28 +58,46 @@ class DigimonGame {
       msg: document.getElementById('msg-display'),
       time: document.getElementById('time-display'),
       modal: document.getElementById('evolve-modal'),
-      menuOverlay: document.getElementById('menu-overlay')
+      menuOverlay: document.getElementById('menu-overlay'),
+      // NEW: Select the hidden input
+      input: document.getElementById('virtual-keyboard')
     };
 
-    // KEYBOARD LISTENER
-    document.addEventListener('keydown', (e) => this.handleTyping(e));
+    // --- UPDATED INPUT LISTENER ---
+    // We listen to the hidden input box for mobile compatibility
+    if (this.els.input) {
+      this.els.input.addEventListener('input', (e) => this.handleTyping(e));
+      // Also keep document listener for Desktop users who might click away
+      document.addEventListener('keydown', (e) => {
+        if (this.gameState === 'GAME_TYPING') {
+          this.els.input.focus(); // Refocus if they click away
+        }
+      });
+    }
 
     this.startAnimation();
-    this.start(); // --- CHANGE: Start the timer immediately ---
+    this.start();
     this.updateDisplay();
   }
 
-  // --- ANIMATION ---
+  // ... (Keep startAnimation, toggleFrame, inputs as is) ...
   startAnimation() {
     if (this.animationInterval) clearInterval(this.animationInterval);
     this.animationInterval = setInterval(() => { this.toggleFrame(); }, 500);
   }
 
-  // --- HELPER: Find the highest form to preview ---
+  toggleFrame() {
+    this.frameIndex = this.frameIndex === 0 ? 1 : 0;
+    if (this.gameState === 'MENU_PET') {
+      const images = this.getPreviewImages(this.petSelectionIndex);
+      if (images) this.els.img.src = images[this.frameIndex];
+    } else {
+      this.els.img.src = this.currentPhaseImages[this.frameIndex];
+    }
+  }
+
   getPreviewImages(petIndex) {
     const previewTree = this.petLines[petIndex].tree;
-
-    // Loop BACKWARDS from Phase 7 down to Phase 0
     for (let i = this.phases.length - 1; i >= 0; i--) {
       const phaseName = this.phases[i];
       if (previewTree[phaseName] && previewTree[phaseName].length > 0) {
@@ -87,20 +105,6 @@ class DigimonGame {
       }
     }
     return null;
-  }
-  toggleFrame() {
-    this.frameIndex = this.frameIndex === 0 ? 1 : 0;
-
-    if (this.gameState === 'MENU_PET') {
-      // Use the helper to get images for the currently selected pet
-      const images = this.getPreviewImages(this.petSelectionIndex);
-      if (images) {
-        this.els.img.src = images[this.frameIndex];
-      }
-    } else {
-      // Normal Game Mode
-      this.els.img.src = this.currentPhaseImages[this.frameIndex];
-    }
   }
 
   // --- INPUTS ---
@@ -150,20 +154,24 @@ class DigimonGame {
   handleRightBottomInput() {
     if (this.isMenuAnimating) return;
     switch (this.gameState) {
-      case 'GAME':
-        // --- CHANGE: No longer toggles Pause. Just confirms active status. ---
-        this.flashMessage("ACTIVE");
-        break;
-      case 'GAME_TYPING': this.exitMenu(); break;
+      case 'GAME': this.flashMessage("ACTIVE"); break;
+      case 'GAME_TYPING': this.finishTypingGame(); break; // Allow early exit
       default: this.exitMenu(); break;
     }
   }
 
-  // --- TYPING GAME ---
+  // --- TYPING GAME LOGIC (MOBILE UPDATED) ---
+
   startTypingGame() {
     this.gameState = 'GAME_TYPING';
     this.els.menuOverlay.style.display = 'none';
     this.els.msg.innerText = "READY...";
+
+    // --- FIX: Force Mobile Keyboard Open ---
+    this.els.input.value = "";
+    this.els.input.focus();
+    // ---------------------------------------
+
     this.typingCorrectChars = 0;
     this.typingTotalChars = 0;
     this.typingTimer = 20;
@@ -183,16 +191,30 @@ class DigimonGame {
 
   handleTyping(e) {
     if (this.gameState !== 'GAME_TYPING') return;
-    if (e.key.length === 1 && e.key.match(/[a-zA-Z]/i)) {
-      const inputChar = e.key.toUpperCase();
+
+    // --- FIX: READ FROM INPUT VALUE INSTEAD OF KEY CODE ---
+    // Mobile sends specific events, better to read the value directly
+    const val = this.els.input.value;
+    if (!val) return; // Empty
+
+    // Get the last character typed
+    const inputChar = val.slice(-1).toUpperCase();
+
+    // Clear the input immediately so it's ready for next char
+    this.els.input.value = "";
+
+    // Logic for Valid Character
+    if (inputChar.match(/[a-zA-Z]/i)) {
       const targetChar = this.typingTarget[this.typingIndex];
       this.typingTotalChars++;
+
       if (inputChar === targetChar) {
         this.typingCorrectChars++;
         this.typingIndex++;
         const typedPart = this.typingTarget.substring(0, this.typingIndex);
         const remainingPart = "_".repeat(this.typingTarget.length - this.typingIndex);
         this.els.msg.innerText = typedPart + remainingPart;
+
         if (this.typingIndex >= this.typingTarget.length) {
           this.els.time.innerText = "OK!";
           this.els.msg.innerText = "";
@@ -209,6 +231,10 @@ class DigimonGame {
   }
 
   finishTypingGame() {
+    // --- FIX: Close Mobile Keyboard ---
+    this.els.input.blur();
+    // ----------------------------------
+
     const minutes = 20 / 60;
     const grossWPM = (this.typingCorrectChars / 5) / minutes;
     let accuracy = 0;
@@ -221,13 +247,11 @@ class DigimonGame {
     setTimeout(() => { this.updateDisplay(); }, 3000);
   }
 
-  // --- EVOLUTION ---
+  // ... (Rest of logic: checkEvolution, tick, etc. remains exactly the same) ...
   checkEvolution() {
-    // --- CHANGE: isPlaying check removed because it's always true now ---
     if (this.evolutionPending) return;
     if (!this.currentDigimon.next || this.currentDigimon.next.length === 0) return;
 
-    // Time Check (Stops automatically when in Menu because totalSeconds doesn't increase)
     const timeInCurrentPhase = this.totalSeconds - this.timeAtLastEvolution;
     const currentPhaseName = this.phases[this.currentPhaseIndex];
     if (this.currentPhaseIndex >= this.phases.length - 1) return;
@@ -250,7 +274,6 @@ class DigimonGame {
     if (canEvolve) this.showEvolutionPrompt();
   }
 
-  // --- TICK ---
   tick() {
     if (this.gameState === 'GAME_TYPING') {
       if (this.typingTimer > 0) {
@@ -259,16 +282,13 @@ class DigimonGame {
       }
       return;
     }
-
-    // This ensures Timer stops when in MENU, but runs otherwise
     if (this.gameState !== 'GAME') return;
-
     this.totalSeconds++;
     this.updateDisplay();
     this.checkEvolution();
   }
 
-  // --- HELPERS & MENUS ---
+  // --- HELPERS ---
   navigateMenu(dir, propName, dataArray) {
     let newIndex = this[propName] + dir;
     if (newIndex >= dataArray.length) newIndex = 0;
@@ -309,13 +329,8 @@ class DigimonGame {
     this.els.menuOverlay.style.display = 'none';
     this.els.time.innerText = "PICK EGG:";
     this.els.msg.innerText = "> " + this.petLines[this.petSelectionIndex].name;
-
-    // --- FIX: Update Image IMMEDIATELY ---
     const images = this.getPreviewImages(this.petSelectionIndex);
-    if (images) {
-      this.frameIndex = 0; // Reset animation to frame 1
-      this.els.img.src = images[0];
-    }
+    if (images) { this.frameIndex = 0; this.els.img.src = images[0]; }
   }
   applySkin(index) { this.els.container.style.backgroundImage = `url('${this.skins[index]}')`; this.flashMessage("SKIN SET!"); }
   applyPet(index) {
@@ -333,25 +348,14 @@ class DigimonGame {
       this.flashMessage("NO CHANGE");
     }
   }
-
-  // --- START/STOP ---
   start() {
-    // Ensure interval is running
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.isPlaying = true;
-    this.els.msg.innerText = "ACTIVE";
     this.timerInterval = setInterval(() => { this.tick(); }, 1000);
   }
-
-  stop() {
-    // We keep this method for internal use if needed, but it's not bound to buttons anymore
-    this.isPlaying = false;
-    this.els.msg.innerText = "PAUSED";
-    clearInterval(this.timerInterval);
-  }
+  stop() { this.isPlaying = false; this.els.msg.innerText = "PAUSED"; clearInterval(this.timerInterval); }
 
   showEvolutionPrompt() { this.evolutionPending = true; this.els.modal.style.display = 'flex'; }
-
   triggerEvolution() {
     this.els.modal.style.display = 'none';
     this.evolutionPending = false;
@@ -383,53 +387,30 @@ class DigimonGame {
     this.els.img.src = this.currentPhaseImages[0];
     this.flashMessage("EVOLVED!");
   }
-
   updateDisplay() {
     if (this.gameState !== 'GAME') return;
-
     const mins = Math.floor(this.totalSeconds / 60);
     const secs = this.totalSeconds % 60;
-
-    // Get the Digimon Name (ID)
     const name = this.currentDigimon.id ? this.currentDigimon.id.toUpperCase() : "DIGIMON";
-
-    // 1. Check Max Level (Priority 1)
     if (!this.currentDigimon.next || this.currentDigimon.next.length === 0) {
-      // Toggle every second between "MAX LEVEL" and Name
-      if (this.totalSeconds % 2 === 0) {
-        this.els.msg.innerText = "MAX LEVEL";
-      } else {
-        this.els.msg.innerText = name;
-      }
+      this.els.msg.innerText = (this.totalSeconds % 2 === 0) ? "MAX LEVEL" : name;
     } else {
-      // 2. Check Time Condition (Priority 2)
       const timeInCurrentPhase = this.totalSeconds - this.timeAtLastEvolution;
       const currentPhaseName = this.phases[this.currentPhaseIndex];
       const requiredTime = this.requirements[currentPhaseName];
-
       if (timeInCurrentPhase >= requiredTime) {
-        // Time is achieved! Alert user to train.
-        // Toggle every second between Alert and Name
-        if (this.totalSeconds % 2 === 0) {
-          this.els.msg.innerText = "TIME TO TRAIN!";
-        } else {
-          this.els.msg.innerText = name;
-        }
+        this.els.msg.innerText = (this.totalSeconds % 2 === 0) ? "TIME TO TRAIN!" : name;
       } else {
-        // 3. Normal State (Just waiting for time)
         this.els.msg.innerText = name;
       }
     }
-
     this.els.time.innerText = `T: ${mins}:${secs.toString().padStart(2, '0')}`;
   }
-
   flashMessage(text) {
     const originalText = this.els.msg.innerText;
     this.els.msg.innerText = text;
     setTimeout(() => {
       if (this.gameState === 'GAME') {
-        // Restore correct status text
         const isMaxLevel = (!this.currentDigimon.next || this.currentDigimon.next.length === 0);
         this.els.msg.innerText = isMaxLevel ? "MAX LEVEL" : "ACTIVE";
       }

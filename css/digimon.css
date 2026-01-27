@@ -271,3 +271,16 @@
     opacity: 1;
   }
 }
+
+/* --- MOBILE KEYBOARD FIX --- */
+#virtual-keyboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;       /* Invisible */
+    z-index: -1;      /* Behind the game */
+    pointer-events: none;
+    font-size: 16px;  /* Prevents iOS from zooming in when focused */
+}
