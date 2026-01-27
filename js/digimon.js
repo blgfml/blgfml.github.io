@@ -11,6 +11,9 @@ class DigimonGame {
     this.skins = data.skins;
     this.skinNames = data.skinNames.map(n => n.toUpperCase());
 
+    // --- MAP DATA ---
+    this.maps = data.maps || []; // Safety fallback
+
     // --- STATE ---
     this.phases = ['PHASE_0', 'PHASE_1', 'PHASE_2', 'PHASE_3', 'PHASE_4', 'PHASE_5', 'PHASE_6', 'PHASE_7'];
 
@@ -31,10 +34,16 @@ class DigimonGame {
     this.timeAtLastEvolution = 0;
 
     // MENUS
-    this.menuOptions = ["SKIN", "PARTNER", "TRAIN", "CANCEL"];
+    // Added ADVENTURE to the menu list
+    this.menuOptions = ["ADVENTURE", "PARTNER", "TRAIN", "CANCEL"];
     this.menuIndex = 0;
     this.skinSelectionIndex = 0;
     this.petSelectionIndex = 0;
+
+    // MAP VARS
+    this.selectedMapIndex = 0;
+    this.selectedLevelIndex = 0;
+    this.currentEnemy = null;
 
     // TYPING GAME VARS
     this.typingTarget = "";
@@ -43,6 +52,7 @@ class DigimonGame {
     this.typingCorrectChars = 0;
     this.typingTotalChars = 0;
     this.wordParts = ["DATA", "CORE", "NET", "WEB", "LINK", "CODE", "GIGA", "MEGA", "TERA", "BYTE", "NEO", "ZERO", "FLAME", "BLUE", "RED", "OMNI", "ALPHA", "BETA", "VIRUS", "FILE", "SCAN", "LOAD"];
+    this.isTrainingMode = true; // Track if we are training or fighting
 
     // ANIMATION
     this.isMenuAnimating = false;
@@ -54,23 +64,44 @@ class DigimonGame {
     // DOM
     this.els = {
       container: document.getElementById('digimon-container'),
+      screen: document.querySelector('.screen-layer'),
       img: document.getElementById('pet-img'),
       msg: document.getElementById('msg-display'),
       time: document.getElementById('time-display'),
       modal: document.getElementById('evolve-modal'),
       menuOverlay: document.getElementById('menu-overlay'),
-      // NEW: Select the hidden input
       input: document.getElementById('virtual-keyboard')
     };
 
-    // --- UPDATED INPUT LISTENER ---
-    // We listen to the hidden input box for mobile compatibility
+    // --- CREATE VS SCREEN DOM ---
+    if (!document.getElementById('vs-screen')) {
+      const vsDiv = document.createElement('div');
+      vsDiv.id = 'vs-screen';
+      vsDiv.innerHTML = `
+            <img id="vs-player" class="vs-sprite" src="">
+            <div class="vs-text">VS</div>
+            <img id="vs-enemy" class="vs-sprite" src="">
+        `;
+      document.querySelector('.screen-layer').appendChild(vsDiv);
+      this.els.vsScreen = vsDiv;
+      this.els.vsPlayer = document.getElementById('vs-player');
+      this.els.vsEnemy = document.getElementById('vs-enemy');
+    }
+
+    // --- KEYBOARD LISTENERS & MOBILE FIX ---
     if (this.els.input) {
       this.els.input.addEventListener('input', (e) => this.handleTyping(e));
-      // Also keep document listener for Desktop users who might click away
+
+      // FIX: If user taps the game container while typing, bring back keyboard
+      this.els.container.addEventListener('click', (e) => {
+        if (this.gameState === 'GAME_TYPING') {
+          this.els.input.focus();
+        }
+      });
+
       document.addEventListener('keydown', (e) => {
         if (this.gameState === 'GAME_TYPING') {
-          this.els.input.focus(); // Refocus if they click away
+          this.els.input.focus();
         }
       });
     }
@@ -80,7 +111,7 @@ class DigimonGame {
     this.updateDisplay();
   }
 
-  // ... (Keep startAnimation, toggleFrame, inputs as is) ...
+  // --- ANIMATION ---
   startAnimation() {
     if (this.animationInterval) clearInterval(this.animationInterval);
     this.animationInterval = setInterval(() => { this.toggleFrame(); }, 500);
@@ -88,10 +119,19 @@ class DigimonGame {
 
   toggleFrame() {
     this.frameIndex = this.frameIndex === 0 ? 1 : 0;
+
     if (this.gameState === 'MENU_PET') {
       const images = this.getPreviewImages(this.petSelectionIndex);
       if (images) this.els.img.src = images[this.frameIndex];
-    } else {
+    }
+    else if (this.gameState === 'GAME_VS') {
+      // Animate VS Screen
+      this.els.vsPlayer.src = this.currentPhaseImages[this.frameIndex];
+      if (this.currentEnemy && this.currentEnemy.images) {
+        this.els.vsEnemy.src = this.currentEnemy.images[this.frameIndex];
+      }
+    }
+    else {
       this.els.img.src = this.currentPhaseImages[this.frameIndex];
     }
   }
@@ -115,11 +155,14 @@ class DigimonGame {
     switch (this.gameState) {
       case 'GAME': this.enterMenu(); break;
       case 'MENU_MAIN':
-        if (this.menuIndex === 0) this.enterSkinMenu();
+        if (this.menuIndex === 0) this.enterMapSelect(); // ADVENTURE
         else if (this.menuIndex === 1) this.enterPetMenu();
-        else if (this.menuIndex === 2) this.startTypingGame();
+        else if (this.menuIndex === 2) this.startTypingGame(true); // TRAIN (True = Training Mode)
         else this.exitMenu();
         break;
+      case 'MENU_MAP': this.enterLevelSelect(); break;
+      case 'MENU_LEVEL': this.tryEnterBattle(); break;
+      case 'GAME_VS': this.startBattleGame(); break;
       case 'MENU_SKIN': this.applySkin(this.skinSelectionIndex); this.exitMenu(); break;
       case 'MENU_PET': this.applyPet(this.petSelectionIndex); this.exitMenu(); break;
     }
@@ -129,6 +172,8 @@ class DigimonGame {
     if (this.isMenuAnimating || this.gameState === 'GAME_TYPING') return;
     switch (this.gameState) {
       case 'MENU_MAIN': this.navigateMenu(-1, 'menuIndex', this.menuOptions); break;
+      case 'MENU_MAP': this.navigateMenu(-1, 'selectedMapIndex', this.maps.map(m => m.name)); break;
+      case 'MENU_LEVEL': this.navigateLevel(-1); break;
       case 'MENU_SKIN': this.navigateMenu(-1, 'skinSelectionIndex', this.skinNames); break;
       case 'MENU_PET':
         this.petSelectionIndex--;
@@ -142,6 +187,8 @@ class DigimonGame {
     if (this.isMenuAnimating || this.gameState === 'GAME_TYPING') return;
     switch (this.gameState) {
       case 'MENU_MAIN': this.navigateMenu(1, 'menuIndex', this.menuOptions); break;
+      case 'MENU_MAP': this.navigateMenu(1, 'selectedMapIndex', this.maps.map(m => m.name)); break;
+      case 'MENU_LEVEL': this.navigateLevel(1); break;
       case 'MENU_SKIN': this.navigateMenu(1, 'skinSelectionIndex', this.skinNames); break;
       case 'MENU_PET':
         this.petSelectionIndex++;
@@ -155,17 +202,163 @@ class DigimonGame {
     if (this.isMenuAnimating) return;
     switch (this.gameState) {
       case 'GAME': this.flashMessage("ACTIVE"); break;
-      case 'GAME_TYPING': this.finishTypingGame(); break; // Allow early exit
+      case 'GAME_VS': this.exitMenu(); break; // Cancel Battle
+      case 'GAME_TYPING': this.finishTypingGame(); break; // Early exit
+      case 'MENU_LEVEL': this.enterMapSelect(); break; // Back to Map
       default: this.exitMenu(); break;
     }
   }
 
-  // --- TYPING GAME LOGIC (MOBILE UPDATED) ---
+  // ===============================================
+  //            MAP & LEVEL SYSTEM
+  // ===============================================
 
-  startTypingGame() {
+  enterMapSelect() {
+    this.gameState = 'MENU_MAP';
+    this.selectedMapIndex = 0;
+
+    // --- FIX: HIDE PET ---
+    this.els.img.style.display = 'none';
+
+    this.renderStaticBar(this.maps[0].name);
+    this.updateMapStatusDisplay();
+  }
+
+  updateMapStatusDisplay() {
+    const map = this.maps[this.selectedMapIndex];
+    this.els.time.innerText = map.isUnlocked ? "UNLOCKED" : "LOCKED";
+    this.els.msg.innerText = "SELECT MAP";
+
+    this.els.screen.style.background = map.background;
+    this.els.screen.style.backgroundSize = "cover";
+    this.els.screen.style.backgroundPosition = "center";
+  }
+
+  enterLevelSelect() {
+    const map = this.maps[this.selectedMapIndex];
+    if (!map.isUnlocked) {
+      this.flashMessage("LOCKED!");
+      return;
+    }
+    this.gameState = 'MENU_LEVEL';
+    this.selectedLevelIndex = 0;
+    this.els.menuOverlay.style.display = 'none';
+    this.renderMapPins();
+    this.updateLevelInfo();
+  }
+  renderMapPins() {
+    // Clear old pins
+    document.querySelectorAll('.map-pin').forEach(p => p.remove());
+
+    const map = this.maps[this.selectedMapIndex];
+
+    map.levels.forEach((level, index) => {
+      const pin = document.createElement('div');
+      pin.className = 'map-pin';
+      pin.style.left = level.x + '%';
+      pin.style.top = level.y + '%';
+
+      if (level.isCleared) pin.classList.add('cleared');
+      else if (level.isUnlocked) pin.classList.add('unlocked');
+      if (index === this.selectedLevelIndex) pin.classList.add('selected');
+
+      // --- CHANGE THIS to append to 'screen' ---
+      this.els.screen.appendChild(pin);
+    });
+  }
+
+  navigateLevel(dir) {
+    const map = this.maps[this.selectedMapIndex];
+    this.selectedLevelIndex += dir;
+    if (this.selectedLevelIndex >= map.levels.length) this.selectedLevelIndex = 0;
+    if (this.selectedLevelIndex < 0) this.selectedLevelIndex = map.levels.length - 1;
+    this.renderMapPins();
+    this.updateLevelInfo();
+  }
+
+  updateLevelInfo() {
+    const level = this.maps[this.selectedMapIndex].levels[this.selectedLevelIndex];
+    this.els.time.innerText = level.name;
+    this.els.msg.innerText = `PHASE: ${level.phase}`;
+  }
+
+  tryEnterBattle() {
+    const level = this.maps[this.selectedMapIndex].levels[this.selectedLevelIndex];
+    if (!level.isUnlocked && !level.isCleared) {
+      this.flashMessage("LOCKED");
+      return;
+    }
+    if (this.currentPhaseIndex < level.phase) {
+      this.flashMessage("TOO WEAK!");
+      return;
+    }
+    this.currentEnemy = this.findEnemyData(level.enemyId);
+    if (!this.currentEnemy) {
+      // Fallback if enemy ID is missing
+      this.currentEnemy = { images: ["", ""] };
+      console.warn("Enemy data missing for:", level.enemyId);
+    }
+
+    this.gameState = 'GAME_VS';
+    this.els.vsScreen.style.display = 'flex';
+    this.els.time.innerText = "";
+    this.els.msg.innerText = "BATTLE!";
+    this.frameIndex = 0;
+  }
+
+  findEnemyData(id) {
+    for (let line of this.petLines) {
+      for (let phase in line.tree) {
+        const digi = line.tree[phase].find(d => d.id === id);
+        if (digi) return digi;
+      }
+    }
+    return null;
+  }
+
+  startBattleGame() {
+    const level = this.maps[this.selectedMapIndex].levels[this.selectedLevelIndex];
+    this.els.vsScreen.style.display = 'none';
+    // Launch Typing Game in Battle Mode (false)
+    // Defaults to wpm 10 if difficulty is missing
+    const diff = level.difficulty || { wpm: 10 };
+    this.startTypingGame(false, diff);
+  }
+
+  resolveBattle(win) {
+    this.gameState = 'MENU_LEVEL';
+    if (win) {
+      this.flashMessage("WIN!");
+      const map = this.maps[this.selectedMapIndex];
+      const level = map.levels[this.selectedLevelIndex];
+      level.isCleared = true;
+
+      // Unlock Next
+      if (this.selectedLevelIndex + 1 < map.levels.length) {
+        map.levels[this.selectedLevelIndex + 1].isUnlocked = true;
+      } else {
+        this.flashMessage("MAP CLEAR!");
+        if (this.selectedMapIndex + 1 < this.maps.length) {
+          this.maps[this.selectedMapIndex + 1].isUnlocked = true;
+        }
+      }
+    } else {
+      this.flashMessage("LOSE...");
+    }
+    this.renderMapPins();
+  }
+
+  // ===============================================
+  //            TYPING GAME LOGIC
+  // ===============================================
+
+  startTypingGame(isTraining = true, difficulty = null) {
     this.gameState = 'GAME_TYPING';
     this.els.menuOverlay.style.display = 'none';
     this.els.msg.innerText = "READY...";
+
+    this.isTrainingMode = isTraining;
+    this.battleDifficulty = difficulty;
 
     // --- FIX: Force Mobile Keyboard Open ---
     this.els.input.value = "";
@@ -192,18 +385,13 @@ class DigimonGame {
   handleTyping(e) {
     if (this.gameState !== 'GAME_TYPING') return;
 
-    // --- FIX: READ FROM INPUT VALUE INSTEAD OF KEY CODE ---
-    // Mobile sends specific events, better to read the value directly
+    // Read Input Value directly
     const val = this.els.input.value;
-    if (!val) return; // Empty
+    if (!val) return;
 
-    // Get the last character typed
     const inputChar = val.slice(-1).toUpperCase();
+    this.els.input.value = ""; // Clear immediately
 
-    // Clear the input immediately so it's ready for next char
-    this.els.input.value = "";
-
-    // Logic for Valid Character
     if (inputChar.match(/[a-zA-Z]/i)) {
       const targetChar = this.typingTarget[this.typingIndex];
       this.typingTotalChars++;
@@ -231,23 +419,30 @@ class DigimonGame {
   }
 
   finishTypingGame() {
-    // --- FIX: Close Mobile Keyboard ---
-    this.els.input.blur();
-    // ----------------------------------
+    this.els.input.blur(); // Close Keyboard
 
     const minutes = 20 / 60;
     const grossWPM = (this.typingCorrectChars / 5) / minutes;
     let accuracy = 0;
     if (this.typingTotalChars > 0) accuracy = Math.floor((this.typingCorrectChars / this.typingTotalChars) * 100);
-    this.petStats.wpm = Math.floor(grossWPM);
-    this.petStats.accuracy = accuracy;
-    this.gameState = 'GAME';
-    this.els.time.innerText = `WPM:${this.petStats.wpm}`;
-    this.els.msg.innerText = `ACC:${this.petStats.accuracy}%`;
-    setTimeout(() => { this.updateDisplay(); }, 3000);
+
+    // TRAINING MODE: Save stats
+    if (this.isTrainingMode) {
+      this.petStats.wpm = Math.floor(grossWPM);
+      this.petStats.accuracy = accuracy;
+      this.gameState = 'GAME';
+      this.els.time.innerText = `WPM:${this.petStats.wpm}`;
+      this.els.msg.innerText = `ACC:${this.petStats.accuracy}%`;
+      setTimeout(() => { this.updateDisplay(); }, 3000);
+    }
+    // BATTLE MODE: Check Win/Loss
+    else {
+      const passed = grossWPM >= (this.battleDifficulty ? this.battleDifficulty.wpm : 10);
+      this.resolveBattle(passed);
+    }
   }
 
-  // ... (Rest of logic: checkEvolution, tick, etc. remains exactly the same) ...
+  // --- EVOLUTION ---
   checkEvolution() {
     if (this.evolutionPending) return;
     if (!this.currentDigimon.next || this.currentDigimon.next.length === 0) return;
@@ -295,7 +490,9 @@ class DigimonGame {
     if (newIndex < 0) newIndex = dataArray.length - 1;
     this[propName] = newIndex;
     this.animateBarTransition(dataArray[this[propName] - dir < 0 ? dataArray.length - 1 : (this[propName] - dir) % dataArray.length], dataArray[newIndex], dir);
+
     if (this.gameState === 'MENU_SKIN') this.els.container.style.backgroundImage = `url('${this.skins[this[propName]]}')`;
+    if (this.gameState === 'MENU_MAP') this.updateMapStatusDisplay();
   }
 
   animateBarTransition(oldText, newText, dir) {
@@ -318,13 +515,26 @@ class DigimonGame {
   enterMenu() { this.gameState = 'MENU_MAIN'; this.menuIndex = 0; this.renderStaticBar(this.menuOptions[0]); this.els.msg.innerText = ""; this.els.time.innerText = ""; }
   enterSkinMenu() { this.gameState = 'MENU_SKIN'; this.skinSelectionIndex = 0; this.renderStaticBar(this.skinNames[0]); }
   enterPetMenu() { this.gameState = 'MENU_PET'; this.petSelectionIndex = this.currentPetIndex; this.updatePetMenuDisplay(); }
+
   exitMenu() {
     this.gameState = 'GAME';
     this.els.menuOverlay.style.display = 'none';
+    this.els.vsScreen.style.display = 'none';
+    document.querySelectorAll('.map-pin').forEach(p => p.remove());
+
+    // --- CHANGE THIS: Reset Screen Background ---
+    if (this.els.screen) this.els.screen.style.background = "";
+
+    // Reset Container Background (just in case skins modified it)
+    this.els.container.style.background = "";
+
+    this.els.img.style.display = 'block';
+    this.applySkin(this.skinSelectionIndex);
     this.updateDisplay();
     this.frameIndex = 0;
     this.toggleFrame();
   }
+
   updatePetMenuDisplay() {
     this.els.menuOverlay.style.display = 'none';
     this.els.time.innerText = "PICK EGG:";

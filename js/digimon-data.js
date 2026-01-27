@@ -535,5 +535,31 @@ window.DigimonData = {
         '/medias/digimon/taiyichi.png',
         '/medias/digimon/yamato.png'
     ],
-    skinNames: ["ORIGINAL", "HIKARI VER.", "TAIYICHI VER.", "YAMATO VER."]
+    skinNames: ["ORIGINAL", "HIKARI VER.", "TAIYICHI VER.", "YAMATO VER."],
+
+    // --- NEW: ADVENTURE MAPS ---
+    maps: [
+        {
+            id: "map_1",
+            name: "FILE ISLAND",
+            // You can use a real image URL here. I'm using a placeholder color for now.
+            // background: "url('path/to/map1.png')", 
+            background: "linear-gradient(to bottom, #76b852, #8DC26F)",
+            isUnlocked: true,
+            levels: [
+                { id: "lvl_1", name: "KOROMON", enemyId: "koromon", phase: 1, x: 20, y: 70, game: "TYPING", difficulty: { wpm: 15 }, isUnlocked: true, isCleared: false },
+                { id: "lvl_2", name: "AGUMON", enemyId: "agumon", phase: 2, x: 40, y: 50, game: "MASH", difficulty: { clicks: 20 }, isUnlocked: false, isCleared: false },
+                { id: "lvl_3", name: "GREYMON", enemyId: "greymon", phase: 3, x: 70, y: 30, game: "TYPING", difficulty: { wpm: 30 }, isUnlocked: false, isCleared: false }
+            ]
+        },
+        {
+            id: "map_2",
+            name: "SERVER CONT.",
+            background: "linear-gradient(to bottom, #e6dada, #274046)",
+            isUnlocked: false,
+            levels: [
+                { id: "lvl_4", name: "METALGREY", enemyId: "metalgreymon", phase: 4, x: 50, y: 50, game: "TYPING", difficulty: { wpm: 40 }, isUnlocked: false, isCleared: false }
+            ]
+        }
+    ]
 };

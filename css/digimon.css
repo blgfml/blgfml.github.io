@@ -15,9 +15,15 @@
   aspect-ratio: 1.1 / 1;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
   font-family: "Press Start 2P", monospace;
   image-rendering: pixelated;
   container-type: inline-size;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* --- SCREEN LAYER --- */
@@ -31,7 +37,8 @@
 
   /* Styling inner LCD screen */
   /* background-color: #8bac0f; Retro GB Green */
-  background-color: transparent; /* Retro GB Green */
+  background-color: transparent;
+  /* Retro GB Green */
   border-radius: 2px;
   overflow: hidden;
   display: flex;
@@ -39,8 +46,9 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  /* box-shadow: inset 0 0 10px rgba(0,0,0,0.5); */
-  color: #0f380f; /* Dark green text */
+  /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); */
+  color: #0f380f;
+  /* Dark green text */
 }
 
 /* The Partner Image */
@@ -58,6 +66,7 @@
   text-align: center;
   width: 100%;
 }
+
 #msg-display {
   /* Was 8px. Now scales with width */
   font-size: clamp(3px, 1.5cqi, 6px);
@@ -73,7 +82,8 @@
 /* --- INVISIBLE BUTTONS --- */
 .digi-btn {
   position: absolute;
-  background: transparent; /* Invisible */
+  background: transparent;
+  /* Invisible */
   border: none;
   cursor: pointer;
   border-radius: 50%;
@@ -83,20 +93,25 @@
 
 /* Visual feedback when clicking the invisible areas */
 .digi-btn:active {
-  background-color: rgba(18, 18, 18, 0.2); /* Slight shadow on press */
+  background-color: rgba(18, 18, 18, 0.2);
+  /* Slight shadow on press */
 }
 
 /* --- D-PAD UP BUTTON --- */
 .btn-up {
-  top: 40%; /* Higher up */
-  left: 14%; /* Centered on the D-pad */
-  width: 10%; /* Smaller touch area */
+  top: 40%;
+  /* Higher up */
+  left: 14%;
+  /* Centered on the D-pad */
+  width: 10%;
+  /* Smaller touch area */
   height: 9%;
 }
 
 /* --- D-PAD DOWN BUTTON --- */
 .btn-down {
-  top: 49%; /* Lower down */
+  top: 49%;
+  /* Lower down */
   left: 14%;
   width: 10%;
   height: 9%;
@@ -108,7 +123,8 @@
   right: 13%;
   width: 15%;
   height: 12%;
-  transform: rotate(-7deg); /* Match image tilt */
+  transform: rotate(-7deg);
+  /* Match image tilt */
 }
 
 /* Right Bottom Button */
@@ -128,7 +144,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(15, 56, 15, 0.95); /* Dark overlay on LCD */
+  background-color: rgba(15, 56, 15, 0.95);
+  /* Dark overlay on LCD */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -143,6 +160,7 @@
   display: block;
   margin-bottom: 10px;
 }
+
 .modal-subtitle {
   font-size: 8px;
   color: #8bac0f;
@@ -152,10 +170,12 @@
   from {
     background-color: rgba(15, 56, 15, 0.95);
   }
+
   to {
     background-color: rgba(48, 98, 48, 0.95);
   }
 }
+
 /* --- NEW MENU UI (Static Window Style) --- */
 #menu-overlay {
   display: none;
@@ -188,8 +208,11 @@
   /* "Glassy" Highlight */
   box-shadow:
     inset 0 2px 5px rgba(255, 255, 255, 0.7),
-    /* Top highlight */ inset 0 -2px 5px rgba(0, 0, 0, 0.2),
-    /* Bottom shadow */ 0 5px 10px rgba(0, 0, 0, 0.4); /* Drop shadow */
+    /* Top highlight */
+    inset 0 -2px 5px rgba(0, 0, 0, 0.2),
+    /* Bottom shadow */
+    0 5px 10px rgba(0, 0, 0, 0.4);
+  /* Drop shadow */
 
   display: flex;
   align-items: center;
@@ -221,12 +244,15 @@
 .slide-out-up {
   animation: slideOutUp 0.2s forwards;
 }
+
 .slide-in-up {
   animation: slideInUp 0.2s forwards;
 }
+
 .slide-out-down {
   animation: slideOutDown 0.2s forwards;
 }
+
 .slide-in-down {
   animation: slideInDown 0.2s forwards;
 }
@@ -236,36 +262,43 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-150%);
     opacity: 0;
   }
 }
+
 @keyframes slideInUp {
   0% {
     transform: translateY(150%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
+
 @keyframes slideOutDown {
   0% {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(150%);
     opacity: 0;
   }
 }
+
 @keyframes slideInDown {
   0% {
     transform: translateY(-150%);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -274,13 +307,116 @@
 
 /* --- MOBILE KEYBOARD FIX --- */
 #virtual-keyboard {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    opacity: 0;       /* Invisible */
-    z-index: -1;      /* Behind the game */
-    pointer-events: none;
-    font-size: 16px;  /* Prevents iOS from zooming in when focused */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  /* Invisible */
+  z-index: -1;
+  /* Behind the game */
+  pointer-events: none;
+  font-size: 16px;
+  /* Prevents iOS from zooming in when focused */
+}
+
+/* --- MAP UI --- */
+.map-pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  /* Locked Gray */
+  border: 2px solid #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  /* Center on coords */
+  z-index: 10;
+}
+
+/* Unlocked (Next Battle) - Blinking Red */
+.map-pin.unlocked {
+  background-color: #ff3333;
+  animation: blinkPin 1s infinite;
+  box-shadow: 0 0 5px red;
+}
+
+/* Cleared - Gold/Green */
+.map-pin.cleared {
+  background-color: #ffd700;
+  border-color: #b8860b;
+}
+
+/* Selected Pin Cursor */
+.map-pin.selected {
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px black;
+  /* Double border */
+  scale: 1.3;
+}
+
+@keyframes blinkPin {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* --- VS SCREEN --- */
+#vs-screen {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f380f;
+  /* Retro Green BG */
+  z-index: 20;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+
+.vs-sprite {
+  width: 40%;
+  image-rendering: pixelated;
+}
+
+.vs-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #0f380f;
+  background: #8bac0f;
+  padding: 2px 5px;
+  border: 2px solid #0f380f;
+  font-weight: bold;
+  animation: shakeVS 0.2s infinite;
+}
+
+@keyframes shakeVS {
+  0% {
+    transform: translate(-52%, -52%);
+  }
+
+  50% {
+    transform: translate(-48%, -48%);
+  }
+
+  100% {
+    transform: translate(-52%, -52%);
+  }
 }
