@@ -386,13 +386,40 @@ class DigimonGame {
 
   updateDisplay() {
     if (this.gameState !== 'GAME') return;
+
     const mins = Math.floor(this.totalSeconds / 60);
     const secs = this.totalSeconds % 60;
-    const isMaxLevel = (!this.currentDigimon.next || this.currentDigimon.next.length === 0);
 
-    // --- CHANGE: Removed "isPlaying" check for PAUSED text ---
-    if (isMaxLevel) this.els.msg.innerText = "MAX LEVEL";
-    else this.els.msg.innerText = "ACTIVE";
+    // Get the Digimon Name (ID)
+    const name = this.currentDigimon.id ? this.currentDigimon.id.toUpperCase() : "DIGIMON";
+
+    // 1. Check Max Level (Priority 1)
+    if (!this.currentDigimon.next || this.currentDigimon.next.length === 0) {
+      // Toggle every second between "MAX LEVEL" and Name
+      if (this.totalSeconds % 2 === 0) {
+        this.els.msg.innerText = "MAX LEVEL";
+      } else {
+        this.els.msg.innerText = name;
+      }
+    } else {
+      // 2. Check Time Condition (Priority 2)
+      const timeInCurrentPhase = this.totalSeconds - this.timeAtLastEvolution;
+      const currentPhaseName = this.phases[this.currentPhaseIndex];
+      const requiredTime = this.requirements[currentPhaseName];
+
+      if (timeInCurrentPhase >= requiredTime) {
+        // Time is achieved! Alert user to train.
+        // Toggle every second between Alert and Name
+        if (this.totalSeconds % 2 === 0) {
+          this.els.msg.innerText = "TIME TO TRAIN!";
+        } else {
+          this.els.msg.innerText = name;
+        }
+      } else {
+        // 3. Normal State (Just waiting for time)
+        this.els.msg.innerText = name;
+      }
+    }
 
     this.els.time.innerText = `T: ${mins}:${secs.toString().padStart(2, '0')}`;
   }
