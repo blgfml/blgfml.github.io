@@ -3,8 +3,8 @@
 window.DigimonData = {
     // --- TIME CONFIGURATION ---
     requirements: {
-        PHASE_0: 5, PHASE_1: 3, PHASE_2: 3, PHASE_3: 3,
-        PHASE_4: 3, PHASE_5: 3, PHASE_6: 3, PHASE_7: 3
+        PHASE_0: 5, PHASE_1: 5, PHASE_2: 5, PHASE_3: 5,
+        PHASE_4: 5, PHASE_5: 5, PHASE_6: 5, PHASE_7: 5
     },
 
     // --- PARTNER DATA ---
