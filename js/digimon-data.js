@@ -508,25 +508,63 @@ window.DigimonData = {
         {
             name: "超かぐや姫！", tree: {
                 PHASE_0: [{
+                    id: "Iroha_Sakayori",
+                    images: ["https://i.ibb.co/C5t3tWyw/a1.png", "https://i.ibb.co/tTqZZwZs/a2.png"],
+                    next: ["scene_1"],
+                }],
+                PHASE_1: [{
+                    id: "scene_1",
+                    images: ["https://i.ibb.co/cXrLLCV9/c1.png", "https://i.ibb.co/LD2Z0swZ/c2.png"],
+                    next: ["scene_2"],
+                }],
+                PHASE_2: [{
+                    id: "scene_2",
+                    images: ["https://i.ibb.co/Jwhw872V/d1.png", "https://i.ibb.co/b52vHMzM/d2.png"],
+                    next: ["Teen_Kaguya"],
+                }],
+                PHASE_3: [{
+                    id: "Teen_Kaguya",
+                    images: ["https://i.ibb.co/s9RbFM41/b1.png", "https://i.ibb.co/2Y60cgdD/b2.png"],
+                    next: ["Collab_Live"],
+                }],
+                PHASE_4: [{
+                    id: "Collab_Live",
+                    images: ["https://i.ibb.co/zVjk1gJx/e1.png", "https://i.ibb.co/RTzxyrRY/e2.png"],
+                    next: ["We_Are_Kaguya!"],
+                }],
+                PHASE_5: [{
+                    id: "We_Are_Kaguya!",
+                    images: ["https://i.ibb.co/Y79K8Jx3/f1.png", "https://i.ibb.co/SXVvtVQc/f2.png"],
+                    next: ["Ending"],
+                }],
+                PHASE_6: [{
+                    id: "Ending",
+                    images: ["https://i.ibb.co/cc7ps2Wz/g1.png", "https://i.ibb.co/ksyvNTZx/g2.png"]
+                }]
+
+            }
+        },
+
+        {
+            name: "デジタマシリーズ：かぐや姫編", tree: {
+                PHASE_0: [{
                     id: "kaguya",
                     images: ["/medias/digimon/digitama/ky1.png", "/medias/digimon/digitama/ky2.png"],
-                    next: ["IrohaSakayori"],
+                    next: ["Iroha_Sakayori_Virtual"],
                     conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
                 PHASE_1: [{
-                    id: "IrohaSakayori",
+                    id: "Iroha_Sakayori_Virtual",
                     images: ["/medias/digimon/digitama/cy1.png", "/medias/digimon/digitama/cy2.png"],
-                    next: ["YachiyoRunami"],
-                    conditions: { time: 3, minWPM: 15, minAccuracy: 20, maxAccuracy: 100 }
+                    next: ["Yachiyo_Runami"],
+                    conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
                 PHASE_2: [{
-                    id: "YachiyoRunami",
-                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"],
-                    conditions: { time: 3, minWPM: 25, minAccuracy: 30, maxAccuracy: 100 }
-                }]
+                    id: "Yachiyo_Runami",
+                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"]
+                }],
             }
         }
-
     ],
     // --- SKIN DATA ---
     skins: [
