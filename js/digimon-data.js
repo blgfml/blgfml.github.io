@@ -542,7 +542,7 @@ window.DigimonData = {
         '/medias/digimon/black.png',
         '/medias/digimon/lui.png',
     ],
-    skinNames: ["ORIGINAL", "HIKARI", "TAIYICHI", "SORA", "YAMATO", "JOU", "MIMI", "TAKERU", "KOUSHIRO", "BLACK", "LUI"],
+    skinNames: ["ORIGINAL", "HIKARI", "TAICHI", "SORA", "YAMATO", "JOU", "MIMI", "TAKERU", "KOUSHIRO", "BLACK", "LUI"],
 
     // --- NEW: ADVENTURE MAPS ---
     maps: [
