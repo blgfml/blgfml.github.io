@@ -532,10 +532,17 @@ window.DigimonData = {
     skins: [
         '/medias/digimon/digivice.png',
         '/medias/digimon/hikari.png',
-        '/medias/digimon/taiyichi.png',
-        '/medias/digimon/yamato.png'
+        '/medias/digimon/taichi.png',
+        '/medias/digimon/sora.png',
+        '/medias/digimon/yamato.png',
+        '/medias/digimon/jou.png',
+        '/medias/digimon/mimi.png',
+        '/medias/digimon/takeru.png',
+        '/medias/digimon/koushiro.png',
+        '/medias/digimon/black.png',
+        '/medias/digimon/lui.png',
     ],
-    skinNames: ["ORIGINAL", "HIKARI VER.", "TAIYICHI VER.", "YAMATO VER."],
+    skinNames: ["ORIGINAL", "HIKARI", "TAIYICHI", "SORA", "YAMATO", "JOU", "MIMI", "TAKERU", "KOUSHIRO", "BLACK", "LUI"],
 
     // --- NEW: ADVENTURE MAPS ---
     maps: [
