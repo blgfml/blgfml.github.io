@@ -35,7 +35,8 @@ class DigimonGame {
 
     // MENUS
     // Added ADVENTURE to the menu list
-    this.menuOptions = ["ADVENTURE", "PARTNER", "TRAIN", "CANCEL"];
+    // MENUS
+    this.menuOptions = ["ADVENTURE", "PARTNER", "TRAIN", "SKIN", "CANCEL"];
     this.menuIndex = 0;
     this.skinSelectionIndex = 0;
     this.petSelectionIndex = 0;
@@ -155,10 +156,11 @@ class DigimonGame {
     switch (this.gameState) {
       case 'GAME': this.enterMenu(); break;
       case 'MENU_MAIN':
-        if (this.menuIndex === 0) this.enterMapSelect(); // ADVENTURE
-        else if (this.menuIndex === 1) this.enterPetMenu();
-        else if (this.menuIndex === 2) this.startTypingGame(true); // TRAIN (True = Training Mode)
-        else this.exitMenu();
+        if (this.menuIndex === 0) this.enterMapSelect();       // ADVENTURE
+        else if (this.menuIndex === 1) this.enterPetMenu();    // PARTNER
+        else if (this.menuIndex === 2) this.startTypingGame(true); // TRAIN
+        else if (this.menuIndex === 3) this.enterSkinMenu();   // SKIN (Restored)
+        else this.exitMenu();                                  // CANCEL
         break;
       case 'MENU_MAP': this.enterLevelSelect(); break;
       case 'MENU_LEVEL': this.tryEnterBattle(); break;
