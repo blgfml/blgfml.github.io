@@ -41,7 +41,7 @@ class DigimonGame {
 
     // MENUS
     // Added "SOUND" to the menu list
-    this.menuOptions = ["SKIN", "PARTNER", "TRAIN", "SOUND", "MAP"];
+    this.menuOptions = ["SKIN", "PARTNER", "TRAIN", "SOUND", "INPROGRESS"];
     this.menuIndex = 0;
     this.skinSelectionIndex = 0;
     this.petSelectionIndex = 0;
