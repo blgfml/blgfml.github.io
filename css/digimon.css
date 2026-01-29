@@ -307,19 +307,27 @@
 
 /* --- MOBILE KEYBOARD FIX --- */
 /* --- MOBILE KEYBOARD FIX --- */
+/* --- MOBILE KEYBOARD FIX (ZOOM STABLE) --- */
 #virtual-keyboard {
-  /* CHANGE THIS from absolute to fixed */
-  position: fixed;
+  /* Use absolute so it stays relative to the GAME CONTAINER */
+  position: absolute;
 
-  /* Move it off-screen so no cursor blinks on top of your game */
-  top: -1000px;
-  left: 0;
+  /* Place it exactly in the CENTER of the game */
+  /* This prevents the "Jump to Top-Left" bug when zoomed in */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  /* Keep it invisible but usable */
   width: 1px;
   height: 1px;
   opacity: 0;
+
+  /* Lower z-index so it doesn't block clicks on buttons */
   z-index: -1;
   pointer-events: none;
+
+  /* Prevent zooming */
   font-size: 16px;
 }
 
