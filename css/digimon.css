@@ -500,3 +500,152 @@
     transform: translate(-52%, -52%);
   }
 }
+
+
+/* =========================================
+   GAME MANUAL UI
+   ========================================= */
+
+.game-manual {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  border: 4px solid #333;
+  font-family: "Press Start 2P", monospace;
+  text-align: left;
+  color: #333;
+}
+
+.manual-title {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  border-bottom: 4px solid #333;
+  padding-bottom: 10px;
+}
+
+.manual-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.manual-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.manual-subtitle {
+  font-size: 14px;
+  background: #333;
+  color: white;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+}
+
+/* --- BUTTON SCHEMATIC (The Diagram) --- */
+.device-schematic {
+  position: relative;
+  height: 200px;
+  background-color: #f0f0f0;
+  border: 2px dashed #999;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.schematic-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 20%;
+  background: #8bac0f;
+  border: 2px solid #0f380f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #0f380f;
+}
+
+/* Button Locations in Schematic */
+.key-group {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* D-PAD (Left Side) */
+.key-group.dpad {
+  top: 50%;
+  left: 10%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.key-group.dpad .key-label {
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid #333;
+  padding: 2px;
+}
+
+/* BUTTON A (Top Right) */
+.key-group.btn-a {
+  top: 40%;
+  right: 5%;
+  flex-direction: row-reverse;
+  /* Text on left of button */
+}
+
+/* BUTTON B (Bottom Right) */
+.key-group.btn-b {
+  top: 70%;
+  right: 5%;
+  flex-direction: row-reverse;
+}
+
+.key-circle {
+  width: 25px;
+  height: 25px;
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.key-desc {
+  font-size: 8px;
+  color: #555;
+  text-transform: uppercase;
+  width: 80px;
+  line-height: 1.2;
+}
+
+/* --- RULES LIST --- */
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  font-size: 10px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.rules-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: #ff3333;
+  font-weight: bold;
+}

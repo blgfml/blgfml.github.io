@@ -339,37 +339,73 @@
     <div class="row">
         <div class="col s12 m10 offset-m1">
             <div class="card" style="background: transparent; box-shadow: none;">
-                <div class="card-content center-align" style="min-height: 400px; padding: 40px;">
-                    <div id="digimon-container">
-    <div class="screen-layer">
-        <img id="pet-img" src="/medias/digimon/egg_1.png" alt="Pet">
-        <div id="menu-overlay">
-            </div>
-        <div class="on-screen-stats">
-            <div id="msg-display">PRESS START</div>
-            <div id="time-display">T: 0:00</div>
-        </div>
-        <div id="evolve-modal">
-            <div class="modal-content">
-                <span class="modal-title">EVOLUTION PENDING!</span>
-                <span class="modal-subtitle">PRESS [YES] BUTTON</span>
-            </div>
-        </div>
-    </div>
-    <button class="digi-btn btn-up" onclick="game.handleUpInput()"></button>
-    <button class="digi-btn btn-down" onclick="game.handleDownInput()"></button>
-    <button class="digi-btn btn-right-top" onclick="game.handleRightTopInput()"></button>
-    <button class="digi-btn btn-right-bottom" onclick="game.handleRightBottomInput()"></button>
-</div>
-
+                <div class="card-content center-align" style="min-height: 400px; padding: 20px;">
                     
-                    <input type="text" id="virtual-keyboard" 
-                           autocomplete="off" 
-                           autocorrect="off" 
-                           autocapitalize="characters" 
-                           spellcheck="false" />
-                           
-                </div>
+                    <div id="digimon-container">
+                        <div class="screen-layer">
+                            <img id="pet-img" src="/medias/digimon/egg_1.png" alt="Pet">
+                            <div id="menu-overlay"></div>
+                            
+                            <div class="on-screen-stats">
+                                <div id="msg-display">PRESS START</div>
+                                <div id="time-display">T: 0:00</div>
+                            </div>
+                            
+                            <div id="evolve-modal">
+                                <div class="modal-content">
+                                    <span class="modal-title">EVOLUTION PENDING!</span>
+                                    <span class="modal-subtitle">PRESS [YES] BUTTON</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="digi-btn btn-up" onclick="game.handleUpInput()"></button>
+                        <button class="digi-btn btn-down" onclick="game.handleDownInput()"></button>
+                        <button class="digi-btn btn-right-top" onclick="game.handleRightTopInput()"></button>
+                        <button class="digi-btn btn-right-bottom" onclick="game.handleRightBottomInput()"></button>
+                        
+                        <input type="text" id="virtual-keyboard" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" />
+                    </div>
+                    <div class="game-manual">
+                        <h2 class="manual-title">TAMER MANUAL</h2>
+                        
+                        <div class="manual-grid">
+                            <div class="manual-column">
+                                <h3 class="manual-subtitle">CONTROLS</h3>
+                                <div class="device-schematic">
+                                    <div class="schematic-screen">SCREEN</div>
+                                    
+                                    <div class="key-group dpad">
+                                        <div class="key-label">UP / DOWN</div>
+                                        <div class="key-desc">Scroll Menu<br>Change Skin</div>
+                                    </div>
+                                    
+                                    <div class="key-group btn-a">
+                                        <div class="key-circle">A</div>
+                                        <div class="key-desc">CONFIRM / MENU</div>
+                                    </div>
+                                    
+                                    <div class="key-group btn-b">
+                                        <div class="key-circle">B</div>
+                                        <div class="key-desc">CANCEL / BACK</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="manual-column">
+                                <h3 class="manual-subtitle">HOW TO PLAY</h3>
+                                <ul class="rules-list">
+                                    <li><strong>TRAINING:</strong> Play the Typing Game to boost stats. 
+                                     <br><span style="font-size:10px; color:#888;">(Tip: Higher WPM = Better Evolution path!)</span></li>
+                                    <li><strong>EVOLUTION:</strong> Your Digimon evolves based on Time Passed + Stats.
+                                    </li>
+                                    <li><strong>ADVENTURE:</strong> Unlock Maps and Battle Bosses. Winning clears the level.</li>
+                                    <li><strong>SETTINGS:</strong> Use 'SOUND' to toggle Music/SFX and 'SKIN' to change designs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -381,8 +417,6 @@
 
 <script src="/js/digimon.js"></script>
 
-
-d
 
     <footer class="page-footer bg-color">
     
