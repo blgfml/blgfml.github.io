@@ -561,7 +561,8 @@ window.DigimonData = {
                 }],
                 PHASE_2: [{
                     id: "Yachiyo_Runami",
-                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"]
+                    images: ["/medias/digimon/digitama/ba1.png", "/medias/digimon/digitama/ba2.png"],
+                    conditions: { time: 3, minWPM: 5, minAccuracy: 10, maxAccuracy: 100 }
                 }],
             }
         }
