@@ -518,7 +518,9 @@ window.DigimonData = {
             }
         },
         {
-            name: "超かぐや姫！", tree: {
+            name: "超かぐや姫！",
+            bgm: "https://www.dropbox.com/scl/fi/iko2ipmnfe40hdwfk8ol2/.mp3?rlkey=20mt1ej5hfi0xzl6h13s42f82&st=w3hph9sw&raw=1",
+            tree: {
                 PHASE_0: [{
                     id: "Iroha_Sakayori",
                     images: ["https://i.ibb.co/C5t3tWyw/a1.png", "https://i.ibb.co/tTqZZwZs/a2.png"],
@@ -558,7 +560,9 @@ window.DigimonData = {
         },
 
         {
-            name: "デジタマシリーズ：かぐや姫編", tree: {
+            name: "デジタマシリーズ：かぐや姫編",
+            bgm: "https://www.dropbox.com/scl/fi/bygk7yl8p4bnhxr0u09cl/Cosmic-Princess-Kaguya-Insert-Song-World-Is-Mine-with-KanRomEn.mp3?rlkey=ei03kawzgn1lb8ve7o9zvzjzw&st=p9cadnbw&raw=1",
+            tree: {
                 PHASE_0: [{
                     id: "kaguya",
                     images: ["/medias/digimon/digitama/ky1.png", "/medias/digimon/digitama/ky2.png"],
