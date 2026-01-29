@@ -7,10 +7,19 @@ window.DigimonData = {
         PHASE_4: 5, PHASE_5: 5, PHASE_6: 5, PHASE_7: 5
     },
 
+    // --- NEW: SOUND EFFECTS ---
+    sfx: {
+        button: "https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3", // Simple Beep
+        evolve: "https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3", // Success Jingle
+        win: "https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3", // Win Sound
+        lose: "https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3"  // Lose Sound
+    },
+
     // --- PARTNER DATA ---
     petLines: [
         {
             name: "Agumon",
+            bgm: "https://jetta.vgmtreasurechest.com/soundtracks/digimon-1-02-tamers-songs/qzaclxhq/Digimon%201%20OST%20-%20Butterfly%20%28Opening%29.mp3",
             tree: {
                 // --- PHASE 0 ---
                 PHASE_0: [{
@@ -163,6 +172,7 @@ window.DigimonData = {
         },
         {
             name: "V-mon",
+            bgm: "https://jetta.vgmtreasurechest.com/soundtracks/digimon-1-02-tamers-songs/lqyubype/Digimon%2002%20OST%20-%20Target%20%28Opening%29.mp3",
             tree: {
                 // --- PHASE 0 ---
                 PHASE_0: [
@@ -244,6 +254,7 @@ window.DigimonData = {
         },
         {
             name: "Gailmon",
+            bgm: "https://jetta.vgmtreasurechest.com/soundtracks/digimon-1-02-tamers-songs/okgdxdwz/Digimon%20Tamers%20OST%20-%20The%20Biggest%20Dreamer%20%28Opening%29.mp3",
             tree: {
                 PHASE_0: [
                     {
@@ -330,6 +341,7 @@ window.DigimonData = {
 
         {
             name: "Tailmon",
+            bgm: "https://jetta.vgmtreasurechest.com/soundtracks/digimon-1-02-tamers-songs/gnukqxst/Digimon%201%20OST%20-%20Brave%20Heart%20%28Evo%20Theme%29.mp3",
             tree: {
                 PHASE_0: [{
                     id: "yukimibotamon",

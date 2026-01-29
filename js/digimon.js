@@ -2,7 +2,6 @@
 
 class DigimonGame {
   constructor() {
-    // 1. LOAD DATA
     const data = window.DigimonData;
     if (!data) return console.error("Digimon Data missing!");
 
@@ -12,7 +11,13 @@ class DigimonGame {
     this.skinNames = data.skinNames.map(n => n.toUpperCase());
     this.maps = data.maps || [];
 
-    // --- STATE ---
+    // --- AUDIO DATA ---
+    this.sfxData = data.sfx || {};
+    this.currentBGM = null;   // The Audio object currently playing
+    this.currentBGMUrl = "";  // The URL of the current song
+    this.audioUnlocked = false;
+
+    // STATE
     this.phases = ['PHASE_0', 'PHASE_1', 'PHASE_2', 'PHASE_3', 'PHASE_4', 'PHASE_5', 'PHASE_6', 'PHASE_7'];
     this.currentPetIndex = 0;
     this.currentTree = this.petLines[0].tree;
@@ -32,7 +37,6 @@ class DigimonGame {
     this.skinSelectionIndex = 0;
     this.petSelectionIndex = 0;
 
-    // MAP VARS
     this.selectedMapIndex = 0;
     this.selectedLevelIndex = 0;
     this.currentEnemy = null;
@@ -46,7 +50,6 @@ class DigimonGame {
     this.wordParts = ["DATA", "CORE", "NET", "WEB", "LINK", "CODE", "GIGA", "MEGA", "TERA", "BYTE", "NEO", "ZERO", "VIRUS", "FILE", "SCAN"];
     this.isTrainingMode = true;
 
-    // ANIMATION
     this.isMenuAnimating = false;
     this.frameIndex = 0;
     this.animationInterval = null;
@@ -76,7 +79,17 @@ class DigimonGame {
       this.els.vsEnemy = document.getElementById('vs-enemy');
     }
 
-    // KEYBOARD LISTENERS
+    // --- INPUT & AUDIO UNLOCK ---
+    // Browsers block audio until the user interacts. We hook into clicks.
+    const unlockHandler = () => {
+      this.unlockAudio();
+      // Remove listeners once unlocked so we don't spam checks
+      document.removeEventListener('click', unlockHandler);
+      document.removeEventListener('keydown', unlockHandler);
+    };
+    document.addEventListener('click', unlockHandler);
+    document.addEventListener('keydown', unlockHandler);
+
     if (this.els.input) {
       this.els.input.addEventListener('input', (e) => this.handleTyping(e));
       this.els.container.addEventListener('click', (e) => {
@@ -87,51 +100,110 @@ class DigimonGame {
       });
     }
 
-    // --- NEW: START PRELOADING ---
     this.preloadAssets();
-
     this.startAnimation();
     this.start();
     this.updateDisplay();
+
+    // Attempt to play initial BGM (Might be blocked until click, but we try)
+    this.playPetBGM();
   }
 
   // ===============================================
-  //            NEW: ASSET PRELOADER
+  //            IMPROVED AUDIO SYSTEM
   // ===============================================
+
+  unlockAudio() {
+    if (this.audioUnlocked) return;
+    this.audioUnlocked = true;
+    console.log("Audio System: Unlocked by user interaction.");
+
+    // Resume the Audio Context if using Web Audio API (future proofing)
+    // For standard HTML5 Audio, we just try to play the current track
+    if (this.currentBGM) {
+      this.currentBGM.play()
+        .then(() => console.log("BGM Resumed Successfully"))
+        .catch(e => console.error("BGM Autoplay Blocked (will retry):", e));
+    }
+  }
+  playBGM(url) {
+    if (!url) return;
+    if (this.currentBGMUrl === url) {
+      // If already playing, just ensure it's not paused
+      if (this.currentBGM && this.currentBGM.paused && this.audioUnlocked) {
+        this.currentBGM.play();
+      }
+      return;
+    }
+
+    console.log("Attempting to play BGM:", url);
+
+    // Stop old BGM
+    if (this.currentBGM) {
+      this.currentBGM.pause();
+      this.currentBGM.currentTime = 0; // Reset
+    }
+
+    this.currentBGMUrl = url;
+    this.currentBGM = new Audio(url);
+    this.currentBGM.loop = true;
+    this.currentBGM.volume = 0.5;
+
+    // IMPORTANT: Add error listener to see if link is broken
+    this.currentBGM.onerror = (e) => {
+      console.error("BGM ERROR: Could not load audio file. Check URL or File Path.", url);
+    };
+
+    // Try to play immediately
+    const playPromise = this.currentBGM.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => console.log("BGM Playing:", url))
+        .catch(error => {
+          if (!this.audioUnlocked) {
+            console.warn("BGM waiting for user click...");
+          } else {
+            console.error("BGM Play Error:", error);
+          }
+        });
+    }
+  }
+
+  playPetBGM() {
+    // Plays the BGM associated with the current Pet Line
+    const bgm = this.petLines[this.currentPetIndex].bgm;
+    if (bgm) this.playBGM(bgm);
+  }
+
+  playSFX(key) {
+    if (!this.audioUnlocked) return;
+    const url = this.sfxData[key];
+    if (!url) return;
+
+    const sfx = new Audio(url);
+    sfx.volume = 0.6; // Slightly louder than BGM
+    sfx.play().catch(e => console.warn("SFX blocked:", e));
+  }
+
+  // ... (Asset Preloader from before) ...
   preloadAssets() {
-    console.log("Starting Asset Preload...");
     const imagesToLoad = [];
-
-    // 1. Gather Skin URLs
     this.skins.forEach(url => imagesToLoad.push(url));
-
-    // 2. Gather All Digimon Sprites
     this.petLines.forEach(line => {
       Object.keys(line.tree).forEach(phaseKey => {
         line.tree[phaseKey].forEach(digimon => {
-          if (digimon.images) {
-            digimon.images.forEach(imgUrl => imagesToLoad.push(imgUrl));
-          }
+          if (digimon.images) digimon.images.forEach(imgUrl => imagesToLoad.push(imgUrl));
         });
       });
     });
-
-    // 3. Gather Map Backgrounds (Only if they are URLs)
     this.maps.forEach(map => {
       if (map.background && map.background.includes('url')) {
-        // Extract URL from "url('...')" string
         const match = map.background.match(/url\(['"]?(.*?)['"]?\)/);
         if (match && match[1]) imagesToLoad.push(match[1]);
       }
     });
-
-    // 4. Actually Load Them
-    imagesToLoad.forEach(url => {
-      const img = new Image();
-      img.src = url;
-      // We don't need to do anything with 'img', just creating it forces the browser to cache it.
-    });
-    console.log(`Preloading ${imagesToLoad.length} assets in background.`);
+    imagesToLoad.forEach(url => { (new Image()).src = url; });
   }
 
   // --- ANIMATION ---
@@ -171,6 +243,9 @@ class DigimonGame {
 
   // --- INPUTS ---
   handleRightTopInput() {
+    // --- AUDIO: BUTTON SFX ---
+    this.playSFX('button');
+
     if (this.evolutionPending) { this.triggerEvolution(); return; }
     if (this.isMenuAnimating) return;
 
@@ -180,7 +255,7 @@ class DigimonGame {
         if (this.menuIndex === 0) this.enterMapSelect();
         else if (this.menuIndex === 1) this.enterPetMenu();
         else if (this.menuIndex === 2) this.startTypingGame(true);
-        else if (this.menuIndex === 3) this.enterSkinMenu(); // FIXED
+        else if (this.menuIndex === 3) this.enterSkinMenu();
         else this.exitMenu();
         break;
       case 'MENU_MAP': this.enterLevelSelect(); break;
@@ -192,6 +267,9 @@ class DigimonGame {
   }
 
   handleUpInput() {
+    // --- AUDIO: BUTTON SFX ---
+    this.playSFX('button');
+
     if (this.isMenuAnimating || this.gameState === 'GAME_TYPING') return;
     switch (this.gameState) {
       case 'MENU_MAIN': this.navigateMenu(-1, 'menuIndex', this.menuOptions); break;
@@ -207,6 +285,9 @@ class DigimonGame {
   }
 
   handleDownInput() {
+    // --- AUDIO: BUTTON SFX ---
+    this.playSFX('button');
+
     if (this.isMenuAnimating || this.gameState === 'GAME_TYPING') return;
     switch (this.gameState) {
       case 'MENU_MAIN': this.navigateMenu(1, 'menuIndex', this.menuOptions); break;
@@ -222,6 +303,8 @@ class DigimonGame {
   }
 
   handleRightBottomInput() {
+    this.playSFX('button');
+
     if (this.isMenuAnimating) return;
     switch (this.gameState) {
       case 'GAME': this.flashMessage("ACTIVE"); break;
@@ -236,9 +319,14 @@ class DigimonGame {
   enterMapSelect() {
     this.gameState = 'MENU_MAP';
     this.selectedMapIndex = 0;
-    this.els.img.style.display = 'none'; // HIDE PET
+    this.els.img.style.display = 'none';
     this.renderStaticBar(this.maps[0].name);
     this.updateMapStatusDisplay();
+
+    // --- AUDIO: Switch to Map BGM (if available) ---
+    // If the map has BGM, play it. If not, keep playing Pet BGM.
+    // Or, if you want Map BGM:
+    if (this.maps[0].bgm) this.playBGM(this.maps[0].bgm);
   }
 
   updateMapStatusDisplay() {
@@ -248,6 +336,9 @@ class DigimonGame {
     this.els.screen.style.background = map.background;
     this.els.screen.style.backgroundSize = "cover";
     this.els.screen.style.backgroundPosition = "center";
+
+    // Switch Map Music if navigating maps
+    if (map.bgm) this.playBGM(map.bgm);
   }
 
   enterLevelSelect() {
@@ -322,6 +413,10 @@ class DigimonGame {
 
   resolveBattle(win) {
     this.gameState = 'MENU_LEVEL';
+
+    // --- AUDIO: Win/Lose Sound ---
+    this.playSFX(win ? 'win' : 'lose');
+
     if (win) {
       this.flashMessage("WIN!");
       const map = this.maps[this.selectedMapIndex];
@@ -331,7 +426,9 @@ class DigimonGame {
         map.levels[this.selectedLevelIndex + 1].isUnlocked = true;
       } else {
         this.flashMessage("MAP CLEAR!");
-        if (this.selectedMapIndex + 1 < this.maps.length) this.maps[this.selectedMapIndex + 1].isUnlocked = true;
+        if (this.selectedMapIndex + 1 < this.maps.length) {
+          this.maps[this.selectedMapIndex + 1].isUnlocked = true;
+        }
       }
     } else {
       this.flashMessage("LOSE...");
@@ -436,6 +533,48 @@ class DigimonGame {
     if (canEvolve) this.showEvolutionPrompt();
   }
 
+  showEvolutionPrompt() {
+    this.evolutionPending = true;
+    this.els.modal.style.display = 'flex';
+    // --- AUDIO: EVOLVE READY (Reuse Win sound or different one) ---
+    // this.playSFX('win'); 
+  }
+
+  triggerEvolution() {
+    this.els.modal.style.display = 'none';
+    this.evolutionPending = false;
+    const nextIDs = this.currentDigimon.next;
+    if (!nextIDs || nextIDs.length === 0) return;
+    const nextPhaseName = this.phases[this.currentPhaseIndex + 1];
+    const possibleDigimons = this.currentTree[nextPhaseName];
+    const candidates = nextIDs.map(id => possibleDigimons.find(d => d.id === id)).filter(d => d);
+    const validCandidates = candidates.filter(target => {
+      if (!target.conditions) return true;
+      if (target.conditions.minWPM && this.petStats.wpm < target.conditions.minWPM) return false;
+      if (target.conditions.minAccuracy && this.petStats.accuracy < target.conditions.minAccuracy) return false;
+      if (target.conditions.maxAccuracy && this.petStats.accuracy > target.conditions.maxAccuracy) return false;
+      return true;
+    });
+    if (validCandidates.length === 0) return;
+    validCandidates.sort((a, b) => {
+      const wpmA = (a.conditions && a.conditions.minWPM) ? a.conditions.minWPM : 0;
+      const wpmB = (b.conditions && b.conditions.minWPM) ? b.conditions.minWPM : 0;
+      return wpmB - wpmA;
+    });
+    const winner = validCandidates[0];
+    this.currentPhaseIndex++;
+    this.currentDigimon = winner;
+    this.currentPhaseImages = this.currentDigimon.images;
+    this.timeAtLastEvolution = this.totalSeconds;
+    this.frameIndex = 0;
+    this.petStats = { wpm: 0, accuracy: 0 };
+    this.els.img.src = this.currentPhaseImages[0];
+    this.flashMessage("EVOLVED!");
+
+    // --- AUDIO: SUCCESS! ---
+    this.playSFX('evolve');
+  }
+
   tick() {
     if (this.gameState === 'GAME_TYPING') {
       if (this.typingTimer > 0) {
@@ -450,7 +589,6 @@ class DigimonGame {
     this.checkEvolution();
   }
 
-  // --- HELPERS ---
   navigateMenu(dir, propName, dataArray) {
     let newIndex = this[propName] + dir;
     if (newIndex >= dataArray.length) newIndex = 0;
@@ -458,7 +596,12 @@ class DigimonGame {
     this[propName] = newIndex;
     this.animateBarTransition(dataArray[this[propName] - dir < 0 ? dataArray.length - 1 : (this[propName] - dir) % dataArray.length], dataArray[newIndex], dir);
     if (this.gameState === 'MENU_SKIN') this.els.container.style.backgroundImage = `url('${this.skins[this[propName]]}')`;
-    if (this.gameState === 'MENU_MAP') this.updateMapStatusDisplay();
+
+    // --- AUDIO: Change Map BGM on scroll ---
+    if (this.gameState === 'MENU_MAP') {
+      this.updateMapStatusDisplay();
+      // playBGM is called inside updateMapStatusDisplay
+    }
   }
 
   animateBarTransition(oldText, newText, dir) {
@@ -495,6 +638,9 @@ class DigimonGame {
     this.updateDisplay();
     this.frameIndex = 0;
     this.toggleFrame();
+
+    // --- AUDIO: Restore Pet BGM ---
+    this.playPetBGM();
   }
 
   updatePetMenuDisplay() {
@@ -505,6 +651,7 @@ class DigimonGame {
     if (images) { this.frameIndex = 0; this.els.img.src = images[0]; }
   }
   applySkin(index) { this.els.container.style.backgroundImage = `url('${this.skins[index]}')`; this.flashMessage("SKIN SET!"); }
+
   applyPet(index) {
     if (index !== this.currentPetIndex) {
       this.currentPetIndex = index;
@@ -516,6 +663,9 @@ class DigimonGame {
       this.timeAtLastEvolution = 0;
       this.petStats = { wpm: 0, accuracy: 0 };
       this.flashMessage("NEW EGG!");
+
+      // --- AUDIO: Switch BGM to new Partner's theme ---
+      this.playPetBGM();
     } else {
       this.flashMessage("NO CHANGE");
     }
@@ -523,38 +673,6 @@ class DigimonGame {
   start() { if (this.timerInterval) clearInterval(this.timerInterval); this.isPlaying = true; this.timerInterval = setInterval(() => { this.tick(); }, 1000); }
   stop() { this.isPlaying = false; this.els.msg.innerText = "PAUSED"; clearInterval(this.timerInterval); }
 
-  showEvolutionPrompt() { this.evolutionPending = true; this.els.modal.style.display = 'flex'; }
-  triggerEvolution() {
-    this.els.modal.style.display = 'none';
-    this.evolutionPending = false;
-    const nextIDs = this.currentDigimon.next;
-    if (!nextIDs || nextIDs.length === 0) return;
-    const nextPhaseName = this.phases[this.currentPhaseIndex + 1];
-    const possibleDigimons = this.currentTree[nextPhaseName];
-    const candidates = nextIDs.map(id => possibleDigimons.find(d => d.id === id)).filter(d => d);
-    const validCandidates = candidates.filter(target => {
-      if (!target.conditions) return true;
-      if (target.conditions.minWPM && this.petStats.wpm < target.conditions.minWPM) return false;
-      if (target.conditions.minAccuracy && this.petStats.accuracy < target.conditions.minAccuracy) return false;
-      if (target.conditions.maxAccuracy && this.petStats.accuracy > target.conditions.maxAccuracy) return false;
-      return true;
-    });
-    if (validCandidates.length === 0) return;
-    validCandidates.sort((a, b) => {
-      const wpmA = (a.conditions && a.conditions.minWPM) ? a.conditions.minWPM : 0;
-      const wpmB = (b.conditions && b.conditions.minWPM) ? b.conditions.minWPM : 0;
-      return wpmB - wpmA;
-    });
-    const winner = validCandidates[0];
-    this.currentPhaseIndex++;
-    this.currentDigimon = winner;
-    this.currentPhaseImages = this.currentDigimon.images;
-    this.timeAtLastEvolution = this.totalSeconds;
-    this.frameIndex = 0;
-    this.petStats = { wpm: 0, accuracy: 0 };
-    this.els.img.src = this.currentPhaseImages[0];
-    this.flashMessage("EVOLVED!");
-  }
   updateDisplay() {
     if (this.gameState !== 'GAME') return;
     const mins = Math.floor(this.totalSeconds / 60);
