@@ -3,7 +3,7 @@
 
 /* MAIN CONTAINER - The Image Skin */
 #digimon-container {
-  background-image: url("/medias/digimon/digivice.png");
+  background-image: url("/medias/digimon/hikari.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -30,16 +30,16 @@
 .screen-layer {
   position: absolute;
   /* These percentages position the box over the green screen area of the image */
-  top: 35%;
-  left: 36%;
-  width: 28%;
-  height: 30%;
+  top: 35.4%;
+  left: 36.7%;
+  width: 26.5%;
+  height: 29%;
 
   /* Styling inner LCD screen */
   /* background-color: #8bac0f; Retro GB Green */
   background-color: transparent;
   /* Retro GB Green */
-  border-radius: 2px;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
