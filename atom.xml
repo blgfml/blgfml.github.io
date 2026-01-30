@@ -6,7 +6,7 @@
   <link href="https://taijinpei.info/atom.xml" rel="self"/>
   
   <link href="https://taijinpei.info/"/>
-  <updated>2025-12-15T03:36:03.713Z</updated>
+  <updated>2026-01-30T05:37:42.210Z</updated>
   <id>https://taijinpei.info/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tamago</title>
+    <link href="https://taijinpei.info/2026/01/30/tamago/"/>
+    <id>https://taijinpei.info/2026/01/30/tamago/</id>
+    <published>2026-01-29T16:00:00.000Z</published>
+    <updated>2026-01-30T05:37:42.210Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Still-in-Development…&quot;&gt;&lt;a href=&quot;#Still-in-Development…&quot; class=&quot;headerlink&quot; title=&quot;Still in Development…&quot;&gt;&lt;/a&gt;Still in</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Game Play" scheme="https://taijinpei.info/tags/Game-Play/"/>
+    
+  </entry>
   
   <entry>
     <title>Supabase-x-Hexo [Build Own Comment System]</title>
