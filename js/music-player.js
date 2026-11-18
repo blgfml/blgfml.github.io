@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btnDownload) {
         btnDownload.addEventListener('click', function () {
             var driveLink = btnDownload.getAttribute('data-link');
-            
+
             if (driveLink && driveLink.trim() !== '') {
                 // If a Google Drive link is provided in the markdown, open it in a new tab
                 window.open(driveLink, '_blank');
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Fallback: If no drive link is provided, download the web audio file normally
                 var link = document.createElement('a');
                 link.href = audio.src;
-                link.download = ''; 
+                link.download = '';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
