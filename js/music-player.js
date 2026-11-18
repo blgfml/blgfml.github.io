@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function togglePlay() {
         if (audio.paused) {
             audio.play();
-            if (btnPlayMain) btnPlayMain.textContent = '⏸';
-            if (btnPlayBottom) btnPlayBottom.textContent = '⏸';
+            if (btnPlayMain) btnPlayMain.innerHTML = '&#x23F8;&#xFE0E;'; // Pause text symbol
+            if (btnPlayBottom) btnPlayBottom.innerHTML = '&#x23F8;&#xFE0E;';
             if (mainCover) mainCover.classList.add('is-playing');
             if (bottomCover) bottomCover.classList.add('is-playing');
         } else {
             audio.pause();
-            if (btnPlayMain) btnPlayMain.textContent = '▶';
-            if (btnPlayBottom) btnPlayBottom.textContent = '▶';
+            if (btnPlayMain) btnPlayMain.innerHTML = '&#x25B6;&#xFE0E;'; // Play text symbol
+            if (btnPlayBottom) btnPlayBottom.innerHTML = '&#x25B6;&#xFE0E;';
             if (mainCover) mainCover.classList.remove('is-playing');
             if (bottomCover) bottomCover.classList.remove('is-playing');
         }
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Reset play buttons and stop spinning when song ends
     audio.addEventListener('ended', function () {
-        if (btnPlayMain) btnPlayMain.textContent = '▶';
-        if (btnPlayBottom) btnPlayBottom.textContent = '▶';
+        if (btnPlayMain) btnPlayMain.innerHTML = '&#x25B6;&#xFE0E;';
+        if (btnPlayBottom) btnPlayBottom.innerHTML = '&#x25B6;&#xFE0E;';
         if (progressBar) progressBar.value = 0;
         if (timeCurrent) timeCurrent.textContent = "0:00";
 
@@ -220,5 +220,47 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
+
+    }
+
+    // --- DOWNLOAD BUTTON ---
+
+    var btnDownload = document.getElementById('btn-download');
+    if (btnDownload) {
+        btnDownload.addEventListener('click', function () {
+            var driveLink = btnDownload.getAttribute('data-link');
+            
+            if (driveLink && driveLink.trim() !== '') {
+                // If a Google Drive link is provided in the markdown, open it in a new tab
+                window.open(driveLink, '_blank');
+            } else {
+                // Fallback: If no drive link is provided, download the web audio file normally
+                var link = document.createElement('a');
+                link.href = audio.src;
+                link.download = ''; 
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
+    }
+
+    // --- SHARE BUTTON ---
+    var btnShare = document.getElementById('btn-share');
+    if (btnShare) {
+        btnShare.addEventListener('click', function () {
+            // Uses native mobile share menu if available
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                // Fallback for desktop: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(function () {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        });
     }
 });
