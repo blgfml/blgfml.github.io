@@ -24,16 +24,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- FORCE TOTAL TIME UPDATE ---
     function updateTotalTime() {
-        if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
-            timeTotal.textContent = formatTime(audio.duration);
-            progressBar.max = audio.duration;
+        var duration = audio.duration;
+
+        // Handle servers/files that report Infinity duration
+        if (duration === Infinity && audio.seekable && audio.seekable.length > 0) {
+            duration = audio.seekable.end(audio.seekable.length - 1);
+        }
+
+        if (duration && !isNaN(duration) && isFinite(duration)) {
+            if (timeTotal) timeTotal.textContent = formatTime(duration);
+            if (progressBar) progressBar.max = duration;
         }
     }
 
-    // Listen to every possible event where the browser might figure out the song length
+    // Listen to metadata events
     audio.addEventListener('loadedmetadata', updateTotalTime);
     audio.addEventListener('durationchange', updateTotalTime);
     audio.addEventListener('canplay', updateTotalTime);
+    audio.addEventListener('progress', updateTotalTime);
+
+    // Fix the race condition: if metadata ALREADY loaded before this script ran, update immediately
+    if (audio.readyState >= 1) {
+        updateTotalTime();
+    }
+    if (progressBar) {
+        progressBar.addEventListener('input', function () {
+            isDraggingProgress = true;
+            if (timeCurrent) timeCurrent.textContent = formatTime(progressBar.value);
+        });
+
+        progressBar.addEventListener('change', function () {
+            audio.currentTime = parseFloat(progressBar.value);
+            isDraggingProgress = false;
+        });
+    }
 
     var mainCover = document.querySelector('.main-cover');
     var bottomCover = document.getElementById('player-img');
