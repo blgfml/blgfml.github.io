@@ -6,7 +6,7 @@
   <link href="https://taijinpei.info/atom.xml" rel="self"/>
   
   <link href="https://taijinpei.info/"/>
-  <updated>2026-04-16T16:55:57.192Z</updated>
+  <updated>2026-11-19T16:47:31.155Z</updated>
   <id>https://taijinpei.info/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DOM</title>
+    <link href="https://taijinpei.info/2026/10/20/dom/"/>
+    <id>https://taijinpei.info/2026/10/20/dom/</id>
+    <published>2026-10-19T16:51:40.000Z</published>
+    <updated>2026-11-19T16:47:31.155Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;HTML-DOM-JAVASCRIPT&quot;&gt;&lt;a href=&quot;#HTML-DOM-JAVASCRIPT&quot; class=&quot;headerlink&quot; title=&quot;HTML - DOM - JAVASCRIPT&quot;&gt;&lt;/a&gt;HTML - DOM -</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Study" scheme="https://taijinpei.info/tags/Study/"/>
+    
+  </entry>
   
   <entry>
     <title>Ultimate Guide - Manga Web to CBZ!</title>
@@ -207,29 +230,6 @@
     
     
     <category term="Web" scheme="https://taijinpei.info/tags/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DOM</title>
-    <link href="https://taijinpei.info/2025/04/14/dom/"/>
-    <id>https://taijinpei.info/2025/04/14/dom/</id>
-    <published>2025-04-13T16:51:40.000Z</published>
-    <updated>2026-11-18T19:27:06.227Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;HTML-DOM-JAVASCRIPT&quot;&gt;&lt;a href=&quot;#HTML-DOM-JAVASCRIPT&quot; class=&quot;headerlink&quot; title=&quot;HTML - DOM - JAVASCRIPT&quot;&gt;&lt;/a&gt;HTML - DOM -</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Study" scheme="https://taijinpei.info/tags/Study/"/>
     
   </entry>
   
